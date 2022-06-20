@@ -22,10 +22,33 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
+<div clas="container"> @yield('section') </div>
+
 <body>
     <div id="app">
-            @include('layouts.headerfooter')
+            @include('layouts.header')
     </div>
+    <main>
+        <section class="section">
+            <div>
+                <h3>@yield('title')</h3>
+            </div>
+            <div class="section-body">
+                <div class="row mx-0 mx-md-auto">
+                    <div class="col-lg-12 px-0 px-md-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                @include('layouts.footer')
+            </footer>
+        </section>
+    </main>
 </body>
 
 </html>

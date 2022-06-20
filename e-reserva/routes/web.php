@@ -25,5 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/citas',CitasController::class);
-Route::resource('/eventos',EventosController::class);
+Route::get('/citas',[CitasController::class, 'index'])->name('citas');
+Route::get('/eventos',[EventosController::class, 'index'])->name('eventos');

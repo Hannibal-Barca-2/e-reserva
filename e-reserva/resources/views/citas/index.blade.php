@@ -1,8 +1,15 @@
-@extends(layouts.app)
+@extends('layouts.app')
 
 @section('title')
-    citas
+    Citas
 @endsection
 
 @section('content')
+    <table>
+        <thead>
+            <tr>
+                
+            </tr>
+        </thead>
+    </table>
 @endsection
