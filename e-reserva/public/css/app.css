@@ -10271,3 +10271,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.header{
+  width: 100%;
+  background-color: #0b5ed7;
+  
+}
+.footer{
+  width: 100%;
+  background-color: #0b5ed7;
+}

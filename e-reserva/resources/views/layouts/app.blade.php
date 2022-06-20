@@ -16,19 +16,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
-            @include('layouts.header')
-
-
-            <div class="bg_blue">
-            @include('layouts.footer')
-            <div>
+            @include('layouts.headerfooter')
     </div>
 </body>
 
