@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CitasController;
-use App\Http\Controllers\EventosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', function () {
-    Route::get('citas',[CitasController::class, 'index'])->name('citas');
-});
+Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
+Route::get('/eventos', [App\Http\Controllers\EventosController::class, 'index'])->name('eventos');
+Route::get('/eventos/crear', [App\Http\Controllers\EventosController::class, 'create'])->name('crearevento');
 
-Route::get('/', function () {
-    Route::get('eventos',[EventosController::class, 'index'])->name('eventos');
-});
-
-Auth::routes();

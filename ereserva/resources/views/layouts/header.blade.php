@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse ps-4" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link" href="{{ url('home') }}" style="color:white"><i class="fa-solid fa-paper-plane pe-2" style="color:white"></i>Solicitudes</a>
+                <a class="nav-link" href="{{ url('home2') }}" style="color:white"><i class="fa-solid fa-paper-plane pe-2" style="color:white"></i>Solicitudes</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="{{ route('citas') }}" style="color:white"><i class="fa-solid fa-calendar-check pe-2" style="color:white"></i>Citas</a>

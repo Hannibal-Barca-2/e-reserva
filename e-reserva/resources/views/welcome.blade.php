@@ -13,7 +13,7 @@
               <th scope="col">Fecha de envio</th>
               <th scope="col">Fecha solicitad</th>
               <th scope="col">Hora solicitada</th>
-              <th scope="col">Nombre del solicitante</th>
+              <th scope="col">Nombre del solicitante</th4>
               <th scope="col">Acciones</th>  
             </tr>
         </thead>
