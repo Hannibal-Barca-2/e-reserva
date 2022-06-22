@@ -5384,10 +5384,232 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  props: {},
+  data: function data() {
+    return {
+      diasSemana: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+      horasDia: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]
+    };
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -5441,7 +5663,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue")["default"]));
+Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('crear-evento', (__webpack_require__(/*! ./components/EventosComponent */ "./resources/js/components/EventosComponent.vue")["default"]));
 var app = new Vue({
   el: '#app'
@@ -28091,28 +28313,406 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-12 col-lg-8" }, [
+      _c("form", [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-10", staticStyle: {} }, [
+          _c(
+            "table",
+            { staticClass: "tableall table-striped mt-2 text-center mb-2" },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { attrs: { scope: "col" } }, [_vm._v("Lunes")]),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { scope: "col" } }, [_vm._v("Martes")]),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: {
+                          name: "horaInicio",
+                          "aria-label": "Default select example",
+                        },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { scope: "col" } }, [_vm._v("Miercoles")]),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { scope: "col" } }, [_vm._v("Jueves")]),
+                  _vm._v(" "),
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { scope: "col" } }, [_vm._v("Viernes")]),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { attrs: { scope: "col" } }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-select",
+                        attrs: { name: "horaInicio" },
+                      },
+                      _vm._l(_vm.horasDia, function (hora, id) {
+                        return _c(
+                          "option",
+                          { key: id, domProps: { value: hora } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(hora) +
+                                "\n                                    "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "button button1", attrs: { href: "" } }, [
+        _vm._v("Crear"),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "form-label" }, [_vm._v("Nombre del evento")]),
+      _vm._v(" "),
+      _c("input", { attrs: { type: "text" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("label", { staticClass: "form-label" }, [
+        _vm._v("Descripción del evento"),
+      ]),
+      _vm._v(" "),
+      _c("input", { staticStyle: { height: "85px" }, attrs: { type: "text" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Dia")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Si/No")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hora Inicio")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hora Fin")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "col" } }, [
+      _c("a", [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: "flexSwitchCheckDefault" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "col" } }, [
+      _c("a", [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: "flexSwitchCheckDefault" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "col" } }, [
+      _c("a", [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: "flexSwitchCheckDefault" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "col" } }, [
+      _c("a", [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: "flexSwitchCheckDefault" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "col" } }, [
+      _c("a", [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: "flexSwitchCheckDefault" },
+        }),
       ]),
     ])
   },

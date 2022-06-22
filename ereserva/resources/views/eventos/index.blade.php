@@ -6,7 +6,7 @@
 @section('content')
     <div class="row align-items-center">
         <div class="col-md-10" style="text-align-center">
-            <table class="table-striped mt-2 text-center mb-2">
+            <table class="tableall table-striped mt-2 text-center mb-2">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
@@ -24,7 +24,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a class="button button1" href="{{route('crearevento')}}">Crear Evento</a>
+            <a class="button button1" href="{{route('eventos.create')}}">Crear Evento</a>
         </div>
     </div>
     

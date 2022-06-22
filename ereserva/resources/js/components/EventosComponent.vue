@@ -1,23 +1,246 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Nombre del evento</label>
+                    <input type="text" />
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripción del evento</label>
+                    <input type="text" style="height: 85px" />
+                </div>
+                <div class="col-md-10" style="text-align-center">
+                    <table class="tableall table-striped mt-2 text-center mb-2">
+                        <thead>
+                            <tr>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Si/No</th>
+                                <th scope="col">Hora Inicio</th>
+                                <th scope="col">Hora Fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="col">Lunes</td>
+                                <td scope="col">
+                                    <a>
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="flexSwitchCheckDefault"
+                                        />
+                                    </a>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Martes</td>
+                                <td scope="col">
+                                    <a>
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="flexSwitchCheckDefault"
+                                        />
+                                    </a>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select" 
+                                    aria-label="Default select example"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Miercoles</td>
+                                <td scope="col">
+                                    <a>
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="flexSwitchCheckDefault"
+                                        />
+                                    </a>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Jueves</td>
+                                <td scope="col">
+                                    <a>
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="flexSwitchCheckDefault"
+                                        />
+                                    </a>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Viernes</td>
+                                <td scope="col">
+                                    <a>
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="flexSwitchCheckDefault"
+                                        />
+                                    </a>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td scope="col">
+                                    <select
+                                    name="horaInicio"
+                                    class="form-select"
+                                    >
+                                        <option
+                                            v-for="(hora, id) in horasDia"
+                                            :value="hora"
+                                            :key="id"
+                                        >
+                                            {{ hora }}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+                <a class="button button1" href="">Crear</a>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+export default {
+    props: {},
+    data() {
+        return {
+            diasSemana: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+
+            horasDia: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+        };
+    },
+    mounted() {},
+};
 </script>

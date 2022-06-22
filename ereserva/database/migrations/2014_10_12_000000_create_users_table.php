@@ -49,6 +49,8 @@ return new class extends Migration
             $table->time('HoraSolicitada');
             $table->string('NombreSolicitante');
             $table->string('ApellidoSolicitante');
+            $table->bigInteger('NumeroTelefono');
+            $table->string('Email');
             $table->string('Status');
             $table->foreignId('IdEvento');
             $table->foreign('IdEvento')->references('id')->on('Eventos');
