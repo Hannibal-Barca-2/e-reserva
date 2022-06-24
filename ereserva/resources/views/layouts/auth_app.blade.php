@@ -20,34 +20,21 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-
 </head>
 
-<div class="container"> @yield('section') </div>
-
-<body class="body">
+<body>
     <div id="app">
-        <nav>
-            @include('layouts.header')
-        </nav>
-        <main>
-            <section class="section">
-                <div>
-                    <h3>@yield('title')</h3>
-                </div>
-                <div class="col-lg-12 px-0 px-md-auto">
-                    <div class="card">
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-4">
+                <div class="auth_form">
+                    <div class="text-center">
+                        <h4 class="mb-3">@yield('title')</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        @yield('content')
                     </div>
                 </div>
-            </section>
-        </main>
-        <footer>
-            @include('layouts.footer')
-        </footer>
+            </div>
+        </div>
     </div>
 </body>
-
-</html>

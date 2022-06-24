@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Administradores', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('Nombre');
-            $table->string('Apellido');
-            $table->string('Email')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('Password');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -28,8 +27,8 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('NombreEvento');
             $table->text('Descripcion');
-            $table->foreignId('IdAdministrador');
-            $table->foreign('IdAdministrador')->references('id')->on('Administradores');
+            $table->foreignId('IdUsuario');
+            $table->foreign('IdUsuario')->references('id')->on('users');
         });
 
         Schema::create('Horarios', function (Blueprint $table){

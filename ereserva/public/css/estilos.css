@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+@charset "UTF-8";
+
+.body{
+    margin: 0;
+    padding: 0;
+    background: #f2f3f5;
+}
+
+.auth_form {
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    padding: 17px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @media (max-width: 400px){
+    .auth_form{
+      width: 90%;
+    }
+  }
+
+.button {
+    background-color: #0a448f;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.registrarse {
+    color: black;
+}
+
+registrarse:hover{
+    color:#0a448f;
+    text-decoration: underline;
+}
+
+.header{
+    width: 100%;
+    background-color: #0a448f;
+    overflow: hidden;
+    align-items: center;
+}
+
+.header img {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.header a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.header a:hover { 
+    background-color: #0b3e80;
+    color: black;
+}
+
+.header a.active{
+background-color: #04AA6D;
+  color: white;
+}
+
+.header ul {
+    padding: 0;
+    margin: 0 0 0 150px;
+    list-style: none;
+}
+
+.header li {
+    float:left;
+}
+
+.footer{
+    width: 100%;
+    background-color: #0a448f;
+}
+
+.bienvenida{
+    color: white;
+}
+
+.logout{
+    color: white;
+}
+
+.logout:hover {
+   color: #ed3232;
+}

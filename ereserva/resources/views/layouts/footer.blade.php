@@ -1,4 +1,4 @@
-<footer class="footer bg-primary">
+<footer class="footer">
     <div class="row justify-content-between">
         <div class="col-auto me-auto">
             <h5 class="fw-bold fs-4" style="color:aliceblue">Contacto:</h5>
