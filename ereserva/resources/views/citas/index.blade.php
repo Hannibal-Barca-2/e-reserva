@@ -4,9 +4,9 @@
 @endsection
 
 @section('content')
-    <div class="row align-items-center">
-        <div class="col-md-10" style="text-align-center">
-            <table class="table-striped mt-2 text-center" style="overflow-x: auto;">
+    {{-- <div class="row align-items-center">
+        <div class="col-md-10 align-self-center" style="text-align-center"> --}}
+            <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
                 <thead>
                     <tr>
                         <th scope="col">Id Cita</th>
@@ -39,6 +39,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+        {{-- </div>
+    </div> --}}
 @endsection

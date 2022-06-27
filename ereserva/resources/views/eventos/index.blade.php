@@ -4,9 +4,9 @@
 @endsection
 
 @section('content')
-    <div class="row align-items-center">
-        <div class="col-md-10" style="text-align-center">
-            <table class="tableall table-striped mt-2 text-center mb-2">
+    {{-- <div class="row align-items-center">
+        <div class="col-md-10" style="text-align-center"> --}}
+            <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
@@ -25,8 +25,8 @@
                 </tbody>
             </table>
             <a class="button button1" href="{{route('eventos.create')}}">Crear Evento</a>
-        </div>
-    </div>
+        {{-- </div>
+    </div> --}}
     
     
 @endsection

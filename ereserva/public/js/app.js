@@ -5599,8 +5599,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {
@@ -28314,7 +28312,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center" }, [
-    _c("div", { staticClass: "col-12 col-lg-8" }, [
+    _c("div", { staticClass: "col-12 col-lg-6 align-self-center" }, [
       _c("form", [
         _vm._m(0),
         _vm._v(" "),
@@ -28323,7 +28321,11 @@ var render = function () {
         _c("div", { staticClass: "col-md-10", staticStyle: {} }, [
           _c(
             "table",
-            { staticClass: "tableall table-striped mt-2 text-center mb-2" },
+            {
+              staticClass:
+                "tablas table-striped mt-2 text-center align-items-center",
+              staticStyle: { "overflow-x": "auto", margin: "0 auto" },
+            },
             [
               _vm._m(2),
               _vm._v(" "),
@@ -28617,22 +28619,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "form-label" }, [_vm._v("Nombre del evento")]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "text" } }),
+    return _c("p", [
+      _vm._v("\n                Nombre: "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "nombre", placeholder: "Nombre" },
+      }),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "form-label" }, [
-        _vm._v("Descripción del evento"),
-      ]),
-      _vm._v(" "),
-      _c("input", { staticStyle: { height: "85px" }, attrs: { type: "text" } }),
+    return _c("p", [
+      _vm._v("\n                Descripción: "),
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: {
+          name: "descripcion",
+          id: "descripcion",
+          cols: "30",
+          rows: "3",
+          placeholder: "Descripción del evento",
+        },
+      }),
     ])
   },
   function () {

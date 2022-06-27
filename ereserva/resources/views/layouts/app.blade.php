@@ -30,7 +30,7 @@
         <nav>
             @include('layouts.header')
         </nav>
-        <main>
+        <main class="system_body">
             <section class="section">
                 <div>
                     <h3>@yield('title')</h3>

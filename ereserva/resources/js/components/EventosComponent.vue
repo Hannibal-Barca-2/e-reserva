@@ -1,17 +1,15 @@
 <template>
     <div class="row justify-content-center">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-6 align-self-center">
             <form>
-                <div class="mb-3">
-                    <label class="form-label">Nombre del evento</label>
-                    <input type="text" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Descripción del evento</label>
-                    <input type="text" style="height: 85px" />
-                </div>
+                <p>
+                    Nombre: <input type="text" name="nombre" placeholder="Nombre" class="form-control">
+                </p>
+                <p>
+                    Descripción: <textarea name="descripcion" id="descripcion" cols="30" rows="3" class="form-control" placeholder="Descripción del evento"></textarea>
+                </p>
                 <div class="col-md-10" style="text-align-center">
-                    <table class="tableall table-striped mt-2 text-center mb-2">
+                    <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
                         <thead>
                             <tr>
                                 <th scope="col">Dia</th>

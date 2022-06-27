@@ -6,9 +6,9 @@ Solicitudes
 
 @section('content')
     
-        <div class="row align-items-center">
-            <div class="col-md-10 justify-content-center" style="text-align-center">
-                <table class="table-striped mt-2 text-center" style="overflow-x: auto;">
+        {{-- <div class="row align-items-center"> --}}
+            {{-- <div class="col-md-10 justify-content-center" style="text-align-center"> --}}
+                <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
                     <thead>
                         <tr>
                             <th scope="col">Id Solicitud</th>
@@ -41,7 +41,7 @@ Solicitudes
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
+            {{-- </div> --}}
+        {{-- </div> --}}
     
 @endsection
