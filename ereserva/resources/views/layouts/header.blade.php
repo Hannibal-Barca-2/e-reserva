@@ -17,7 +17,7 @@
                             style="color:white"></i>Citas</a>
                 </li>
                 <li>
-                    <a href="{{ route('eventos.index') }}" style="color:white"><i
+                    <a href="{{ route('eventos') }}" style="color:white"><i
                             class="fa-solid fa-calendar-days pe-2" style="color:white"></i>Eventos</a>
                 </li>
             </ul>

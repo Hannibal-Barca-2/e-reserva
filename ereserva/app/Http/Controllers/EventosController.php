@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Evento;
 
 class EventosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('eventos.index');
+        $user_id=auth()->id();
+        $eventos = DB::table('eventos')
+        ->join('Horarios', 'Horarios.IdEvento','=','Eventos.id')
+        ->select('Eventos.id','Eventos.NombreEvento','Horarios.Dia','Horarios.HoraInicio','Horarios.HoraFin')
+        ->where('Eventos.IdUsuario','=',$user_id)
+        ->get();
+
+        return view('eventos.index', compact('eventos'));
     }
 
     /**
@@ -77,8 +81,17 @@ class EventosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($evento)
     {
-        //
+        $user_id = auth()->id();
+        DB::table('Horarios')
+        ->where('Horarios.IdEvento','=',$evento)
+        ->delete();
+        DB::table('Eventos')
+        ->where('Eventos.IdUsuario','=',$user_id)
+        ->where('Eventos.id','=',$evento)
+        ->delete();
+
+        return redirect()->route('eventos');
     }
 }

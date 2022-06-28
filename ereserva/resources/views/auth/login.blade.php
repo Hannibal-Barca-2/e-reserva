@@ -27,7 +27,7 @@
             @enderror
 
             <button type="submit"
-                class="button">Iniciar
+                class="button_login">Iniciar
                 sesión</button>
             <a href="{{ route('registro') }}"
                 class="registrarse my-2">Registrarse</a>

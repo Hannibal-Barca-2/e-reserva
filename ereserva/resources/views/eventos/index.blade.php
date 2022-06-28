@@ -11,20 +11,27 @@
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Dias que se ofrece</th>
-                        <th scope="col">Horario</th>
+                        <th scope="col">Hora Inicio</th>
+                        <th scope="col">Hora Fin</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($eventos as $evento)
                     <tr>
-                        <td scope="col">Tramite 1</td>
-                        <td scope="col">Lunes, Miercoles, Viernes</td>
-                        <td scope="col">9:00 - 16:00</td>
-                        <td scope="col"></td>
+                        <td scope="col">{{ $evento->NombreEvento }}</td>
+                        <td scope="col">{{ $evento->Dia }}</td>
+                        <td scope="col">{{ $evento->HoraInicio }}</td>
+                        <td scope="col">{{ $evento->HoraFin }}</td>
+                        <td scope="col">
+                            <a class="btn btn-danger" href="{{ route('eventos.eliminar', $evento->id) }}"><i class="fa-solid fa-ban"></i></a>
+                            <a class="btn btn-primary" href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                        </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <a class="button button1" href="{{route('eventos.create')}}">Crear Evento</a>
+            <a class="button button1" href="{{route('eventos.crear')}}">Crear Evento</a>
         {{-- </div>
     </div> --}}
     

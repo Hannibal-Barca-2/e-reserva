@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Solicitud;
 
 class SolicitudesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -66,19 +63,27 @@ class SolicitudesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update($solicitud)
+    {   
+        $user_id=auth()->id();
+        DB::table('Solicitudes')
+        ->join('Eventos','Solicitudes.IdEvento','=','Eventos.id')
+        ->where('Eventos.IdUsuario','=',$user_id)
+        ->where('Solicitudes.id','=',$solicitud)
+        ->update(['Status'=>'Aceptada']);
+
+        return redirect()->route('home2');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($solicitud)
     {
-        //
+        $user_id = auth()->id();
+        DB::table('Solicitudes')
+        ->join('Eventos','Solicitudes.IdEvento','=','Eventos.id')
+        ->where('Eventos.IdUsuario','=',$user_id)
+        ->where('Solicitudes.id','=',$solicitud)
+        ->delete();
+
+        return redirect()->route('home2');
     }
 }
