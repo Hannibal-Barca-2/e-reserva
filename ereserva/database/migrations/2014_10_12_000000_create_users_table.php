@@ -38,7 +38,10 @@ return new class extends Migration
             $table->time('HoraFin');
             $table->string('Status');
             $table->foreignId('IdEvento');
-            $table->foreign('IdEvento')->references('id')->on('Eventos');
+            $table->foreign('IdEvento')
+                  ->references('id')
+                  ->on('Eventos')
+                  ->onDelete('cascade');
         });
 
         Schema::create('Solicitudes', function(Blueprint $table){
@@ -52,7 +55,10 @@ return new class extends Migration
             $table->string('Email');
             $table->string('Status');
             $table->foreignId('IdEvento');
-            $table->foreign('IdEvento')->references('id')->on('Eventos');
+            $table->foreign('IdEvento')
+                  ->references('id')
+                  ->on('Eventos')
+                  ->onDelete('cascade');
         });
     }
 

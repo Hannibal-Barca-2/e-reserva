@@ -38,49 +38,35 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $eventoNuevo = new Evento();
+        $eventoNuevo->NombreEvento = $request->NombreEvento;
+        $eventoNuevo->Descripcion = $request->Descripcion;
+        $eventoNuevo->IdUsuario = auth()->id();
+        $eventoNuevo->save();
+
+        return redirect()->route('eventos.horarios');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function horarios()
+    {
+        return view('horarios.crear');        
+    }
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($evento)
     {
         $user_id = auth()->id();
@@ -92,6 +78,6 @@ class EventosController extends Controller
         ->where('Eventos.id','=',$evento)
         ->delete();
 
-        return redirect()->route('eventos');
+        return redirect()->route('eventos.index');
     }
 }

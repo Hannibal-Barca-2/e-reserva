@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\SolicitudesController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\HorariosController;
 use Facade\IgnitionContracts\Solution;
 
 Route::get('/', function () {
@@ -31,7 +32,15 @@ Route::get('/logout', [SesionController::class, 'destroy'])->name('logout')
     ->middleware('auth');
 Route::get('solicitudes/aceptar/{id}', [SolicitudesController::class, 'update'])->name('solicitudes.aceptar');
 Route::get('solicitudes/rechazar/{id}', [SolicitudesController::class, 'destroy'])->name('solicitudes.rechazar');
+
 Route::get('citas/eliminar/{id}', [CitasController::class, 'destroy'])->name('citas.eliminar');
+
+// Route::get('eventos/crear', [EventosController::class, 'create'])->name('eventos.crear');
+
 Route::get('eventos/eliminar/{id}', [EventosController::class, 'destroy'])->name('eventos.eliminar');
-Route::get('eventos/crear', [EventosController::class, 'create'])->name('eventos.crear');
+
+Route::resource('eventos', EventosController::class);
+Route::get('eventos/store', [EventosController::class, 'store'])->name('eventosstore');
+Route::resource('horarios',HorariosController::class);
+
 // Route::get('/eventos/crear', [App\Http\Controllers\EventosController::class, 'create'])->name('crearevento');

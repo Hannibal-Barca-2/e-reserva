@@ -31,7 +31,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a class="button button1" href="{{route('eventos.crear')}}">Crear Evento</a>
+            <a class="button button1" href="{{route('eventos.create')}}">Crear Evento</a>
         {{-- </div>
     </div> --}}
     

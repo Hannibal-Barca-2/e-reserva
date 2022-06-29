@@ -15,12 +15,12 @@ class RegistroController extends Controller
 
         $this->validate(request(), [
             'name'=>'required',
-            'email'=>'required|email',
-            'password'=>'required|confirmed',
+            'email'=>'required',
+            'password'=>'required',
         ]);
 
         $admin = User::create(request(['name', 'email', 'password']));
         auth()->login($admin);
-        return redirect()->to('/home2');
+        return redirect()->to('home2');
     }
 }
