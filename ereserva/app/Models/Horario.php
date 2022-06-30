@@ -16,4 +16,5 @@ class Horario extends Model
         'Status',
         'IdEvento',
     ];
+    public $timestamps = false;
 }

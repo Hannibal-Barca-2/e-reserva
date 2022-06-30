@@ -16,4 +16,14 @@ class Evento extends Model
     ];
     
     public $timestamps = false;
+
+    public function eventosSolicitudes()
+    {
+        return $this->hasMany('App\Models\Solicitud');
+    }
+
+    public function eventosHorarios()
+    {
+        return $this->hasMany('App\Models\Horario');
+    }
 }

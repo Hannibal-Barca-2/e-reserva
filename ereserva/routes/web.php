@@ -40,7 +40,6 @@ Route::get('citas/eliminar/{id}', [CitasController::class, 'destroy'])->name('ci
 Route::get('eventos/eliminar/{id}', [EventosController::class, 'destroy'])->name('eventos.eliminar');
 
 Route::resource('eventos', EventosController::class);
-Route::get('eventos/store', [EventosController::class, 'store'])->name('eventosstore');
 Route::resource('horarios',HorariosController::class);
 
 // Route::get('/eventos/crear', [App\Http\Controllers\EventosController::class, 'create'])->name('crearevento');

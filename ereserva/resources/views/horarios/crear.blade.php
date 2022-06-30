@@ -1,23 +1,25 @@
 @extends('layouts.app')
 @section('title')
-    Nuevo evento
+    Agregar Horario
 @endsection
+
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6 align-self-center">
-            <form>
-                <p>
-                    Dia:
-                    <input type="date" class="form-control mb-2" />
-                </p>
-                <p>
-                    Hora de inicio:
-                    <input type="time" class="form-control mb-2" />
-                    Hora de fin:
-                    <input type="time" class="form-control mb-2" />
-                </p>
-            </form>
-            <a class="button button1" href="">Crear</a>
-        </div>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-6 align-self-center">
+        <form action="{{ route('horarios.store') }}" method="POST">
+            @csrf
+            <p>
+                Dia:
+                <input name="Dia" type="date" class="form-control mb-2" />
+            </p>
+            <p>
+                Hora de inicio:
+                <input name="HoraInicio" type="time" class="form-control mb-2" />
+                Hora de fin:
+                <input name="HoraFin" type="time" class="form-control mb-2" />
+            </p>
+            <button class="button button1" type="submit">Agregar</button>
+        </form>
     </div>
+</div>
 @endsection

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Validator;
 use App\Models\Evento;
+use App\Models\Horario;
 
 class EventosController extends Controller
 {
@@ -25,32 +27,30 @@ class EventosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('eventos.crear');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+
         $eventoNuevo = new Evento();
         $eventoNuevo->NombreEvento = $request->NombreEvento;
         $eventoNuevo->Descripcion = $request->Descripcion;
         $eventoNuevo->IdUsuario = auth()->id();
         $eventoNuevo->save();
 
-        return redirect()->route('eventos.horarios');
+        $horarioNuevo = new Horario;
+        $horarioNuevo->Dia = $request->Dia;
+        $horarioNuevo->HoraInicio = $request->HoraInicio;
+        $horarioNuevo->HoraFin = $request->HoraFin;
+        $horarioNuevo->Status = 'Disponible';
+        $horarioNuevo->IdEvento = $eventoNuevo->id;
+        $horarioNuevo->save();
+
+        return redirect()->route('eventos.index');
+    }
+    public function create()
+    {
+        return view('eventos.crear');
     }
 
-    public function horarios()
-    {
-        return view('horarios.crear');        
-    }
 
     public function show($id)
     {
@@ -59,12 +59,31 @@ class EventosController extends Controller
 
     public function edit($id)
     {
-        //
+        $evento = $id;
+        $user_id = auth()->id();
+        $nombreEvento = DB::table('Eventos')
+        ->select('Eventos.NombreEvento', 'Eventos.id', 'Eventos.Descripcion')
+        ->where('Eventos.id', '=', $evento)
+        ->where('Eventos.IdUsuario', '=', $user_id)
+        ->get();
+
+        $horarios = DB::table('Horarios')
+        ->select('id','Dia','HoraInicio', 'HoraFin', 'Status')
+        ->where('IdEvento', '=', $evento)
+        ->get();
+
+        return view('eventos.editar', compact('nombreEvento', 'horarios', 'evento'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $eventoUpdate = Evento::find($id);
+        $eventoUpdate->NombreEvento = $request->NombreEvento;
+        $eventoUpdate->Descripcion = $request->Descripcion;
+
+        $eventoUpdate->save();
+
+        return redirect()->route('eventos.index');
     }
 
     public function destroy($evento)

@@ -18,18 +18,21 @@ class HorariosController extends Controller
     }
 
 
-    public function create()
-    {
-        return view('horarios.crear');
-    }
-
-    public function store(Request $request)
+    public function create(Request $request, $id)
     {
         $horario = new Horario();
         $horario->Dia = $request->Dia;
         $horario->HoraInicio = $request->HoraInicio;
         $horario->HoraFin = $request->HoraFin;
         $horario->Status = 'Disponible';
+        $horario->IdEvento = $id;
+
+        return redirect()->route('eventos.editar');
+    }
+
+    public function store(Request $request, $id)
+    {
+        
     }
 
     /**

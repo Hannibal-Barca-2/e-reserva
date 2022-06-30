@@ -25,7 +25,7 @@
                         <td scope="col">{{ $evento->HoraFin }}</td>
                         <td scope="col">
                             <a class="btn btn-danger" href="{{ route('eventos.eliminar', $evento->id) }}"><i class="fa-solid fa-ban"></i></a>
-                            <a class="btn btn-primary" href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-primary" href="{{ route('eventos.edit', $evento->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                     </tr>
                     @endforeach

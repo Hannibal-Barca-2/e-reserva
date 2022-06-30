@@ -6,7 +6,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-12 col-lg-6 align-self-center">
-        <form action="{{route('eventos.store')}}" method="POST">
+        <form action="{{ route('eventos.store') }}" method="POST">
             @csrf
             <p>
                 Nombre:
@@ -28,7 +28,17 @@
                     placeholder="Descripción del evento"
                 ></textarea>
             </p>
-            <a class="button button1" type="submit" href="{{ route('eventosstore')}}">Siguiente</a>
+            <p>
+                Dia:
+                <input name="Dia" type="date" class="form-control mb-2" />
+            </p>
+            <p>
+                Hora de inicio:
+                <input name="HoraInicio" type="time" class="form-control mb-2" />
+                Hora de fin:
+                <input name="HoraFin" type="time" class="form-control mb-2" />
+            </p>
+            <button class="button button1" type="submit">Crear</button>
         </form>
     </div>
 </div>
