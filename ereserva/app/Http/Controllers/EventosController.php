@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 // use Validator;
 use App\Models\Evento;
 use App\Models\Horario;
+use App\Models\Solicitud;
 
 class EventosController extends Controller
 {
@@ -14,8 +15,7 @@ class EventosController extends Controller
     {
         $user_id=auth()->id();
         $eventos = DB::table('eventos')
-        ->join('Horarios', 'Horarios.IdEvento','=','Eventos.id')
-        ->select('Eventos.id','Eventos.NombreEvento','Horarios.Dia','Horarios.HoraInicio','Horarios.HoraFin')
+        ->select('Eventos.id','Eventos.NombreEvento','Eventos.Descripcion')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->get();
 
@@ -67,12 +67,7 @@ class EventosController extends Controller
         ->where('Eventos.IdUsuario', '=', $user_id)
         ->get();
 
-        $horarios = DB::table('Horarios')
-        ->select('id','Dia','HoraInicio', 'HoraFin', 'Status')
-        ->where('IdEvento', '=', $evento)
-        ->get();
-
-        return view('eventos.editar', compact('nombreEvento', 'horarios', 'evento'));
+        return view('eventos.editar', compact('nombreEvento'));
     }
 
     public function update(Request $request, $id)
@@ -89,13 +84,22 @@ class EventosController extends Controller
     public function destroy($evento)
     {
         $user_id = auth()->id();
-        DB::table('Horarios')
-        ->where('Horarios.IdEvento','=',$evento)
-        ->delete();
-        DB::table('Eventos')
-        ->where('Eventos.IdUsuario','=',$user_id)
-        ->where('Eventos.id','=',$evento)
-        ->delete();
+
+        $cuenta=Solicitud::slect(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
+        ->where('solicitudes.idEvento','=',$evento)
+        ->get();
+
+        if($cuenta!=0){
+            DB::table('Horarios')
+            ->where('Horarios.IdEvento','=',$evento)
+            ->delete();
+            DB::table('Eventos')
+            ->where('Eventos.IdUsuario','=',$user_id)
+            ->where('Eventos.id','=',$evento)
+            ->delete();
+        }else{
+
+        }
 
         return redirect()->route('eventos.index');
     }
