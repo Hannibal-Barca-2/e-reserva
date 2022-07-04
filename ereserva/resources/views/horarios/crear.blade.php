@@ -10,7 +10,6 @@
                 <tr>
                     <th scope="col">Dia</th>
                     <th scope="col">Hora de Inicio</th>
-                    <th scope="col">Hora Fin</th>
                     <th scope="col">Status</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -19,8 +18,7 @@
                 @foreach ($horarios as $horario)
                     <tr>
                         <td scope="col">{{ $horario->Dia }}</td>
-                        <td scope="col">{{ $horario->HoraInicio }}</td>
-                        <td scope="col">{{ $horario->HoraFin }}</td>
+                        <td scope="col">{{ $horario->Hora }}</td>
                         <td scope="col">{{ $horario->Status }}</td>
                         <td scope="col">
                             <a class="btn btn-danger" href="{{ route('horarios.eliminar', $horario->id) }}"><i
@@ -41,9 +39,7 @@
                 </p>
                 <p>
                     Hora de inicio:
-                    <input name="HoraInicio" type="time" class="form-control mb-2" />
-                    Hora de fin:
-                    <input name="HoraFin" type="time" class="form-control mb-2" />
+                    <input name="Hora" type="time" class="form-control mb-2" />
                 </p>
                 <button class="button button1" type="submit">Agregar</button>
             </form>

@@ -33,10 +33,8 @@
                 <input name="Dia" type="date" class="form-control mb-2" />
             </p>
             <p>
-                Hora de inicio:
-                <input name="HoraInicio" type="time" class="form-control mb-2" />
-                Hora de fin:
-                <input name="HoraFin" type="time" class="form-control mb-2" />
+                Hora:
+                <input name="Hora" type="time" class="form-control mb-2" />
             </p>
             <button class="button button1" type="submit">Crear</button>
         </form>

@@ -19,10 +19,17 @@ class EventosController extends Controller
         ->where('Eventos.IdUsuario','=',$user_id)
         ->get();
 
-        return view('eventos.index', compact('eventos'));
+        
+        $cuenta=DB::table('Solicitudes')
+        ->select(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
+        ->where('solicitudes.idEvento','=', 13)
+        ->get();
+
+        $cuenta2 = $cuenta[0]->solicitudes_cuenta;
+        return view('eventos.index', compact('eventos','cuenta2'));
     }
 
-    /**
+ /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,8 +45,7 @@ class EventosController extends Controller
 
         $horarioNuevo = new Horario;
         $horarioNuevo->Dia = $request->Dia;
-        $horarioNuevo->HoraInicio = $request->HoraInicio;
-        $horarioNuevo->HoraFin = $request->HoraFin;
+        $horarioNuevo->Hora = $request->Hora;
         $horarioNuevo->Status = 'Disponible';
         $horarioNuevo->IdEvento = $eventoNuevo->id;
         $horarioNuevo->save();
@@ -85,11 +91,12 @@ class EventosController extends Controller
     {
         $user_id = auth()->id();
 
-        $cuenta=Solicitud::slect(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
+        $cuenta=DB::table('Solicitudes')
+        ->select(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
         ->where('solicitudes.idEvento','=',$evento)
         ->get();
 
-        if($cuenta!=0){
+        if($cuenta[0]->solicitudes_cuenta!=0){
             DB::table('Horarios')
             ->where('Horarios.IdEvento','=',$evento)
             ->delete();
@@ -97,10 +104,11 @@ class EventosController extends Controller
             ->where('Eventos.IdUsuario','=',$user_id)
             ->where('Eventos.id','=',$evento)
             ->delete();
+            
+            return redirect()->route('eventos.index');
         }else{
-
+            return redirect()->route('eventos.index')->with('alert', 'No se puede eliminar');
         }
 
-        return redirect()->route('eventos.index');
     }
 }

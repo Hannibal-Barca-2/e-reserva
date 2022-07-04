@@ -11,8 +11,7 @@ class Horario extends Model
 
     protected $fillable = [
         'Dia',
-        'HoraInicio',
-        'HoraFin',
+        'Hora',
         'Status',
         'IdEvento',
     ];

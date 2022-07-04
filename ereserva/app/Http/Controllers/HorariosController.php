@@ -35,8 +35,7 @@ class HorariosController extends Controller
     {
         $horario = new Horario();
         $horario->Dia = $request->Dia;
-        $horario->HoraInicio = $request->HoraInicio;
-        $horario->HoraFin = $request->HoraFin;
+        $horario->Hora = $request->Hora;
         $horario->Status = 'Disponible';
         $horario->IdEvento = $idEvento;
         $horario->save();
@@ -56,7 +55,7 @@ class HorariosController extends Controller
         $user_id = auth()->id();
 
         $horarios = DB::table('Horarios')
-        ->select('id','Dia','HoraInicio', 'HoraFin', 'Status')
+        ->select('id','Dia','Hora', 'Status')
         ->where('IdEvento', '=', $idEvento)
         ->get();
 
@@ -66,7 +65,11 @@ class HorariosController extends Controller
 
     public function edit($id)
     {
-        $horario = $id;
+        $horario = DB::table('Horarios')
+        ->select( 'Horarios.id','Horarios.Dia', 'Horarios.Hora')
+        ->where('Horarios.id', '=', $id)
+        ->get();
+
         return view('horarios.editar', compact('horario'));
     }
 
@@ -74,9 +77,7 @@ class HorariosController extends Controller
     {
         $horarioUpdate = Horario::find($id);
         $horarioUpdate->Dia =$request->Dia;
-        $horarioUpdate->HoraInicio =$request->HoraInicio;
-        $horarioUpdate->HoraFin = $request->HoraFin;
-
+        $horarioUpdate->Hora =$request->Hora;
         $horarioUpdate->save();
 
         return redirect()->route('eventos.index');

@@ -72,6 +72,15 @@ class SolicitudesController extends Controller
         ->where('Solicitudes.id','=',$solicitud)
         ->update(['Status'=>'Aceptada']);
 
+        DB::table('Horarios')
+        ->join('Eventos', 'Horarios.IdEvento','=','Eventos.id')
+        ->join('Solicitudes', 'Eventos.id', '=', 'Solicitudes.IdEvento')
+        ->where('Solicitudes.Status', '=', 'Aceptada')
+        ->where('Solicitudes.FechaSolicitada','=','Horarios.Dia')
+        ->where('Solicitudes.HoraSolicitada','=','Horarios.Hora')
+        ->update(['Horarios.Status'=>'Ocupado']);
+        
+
         return redirect()->route('home2');
     }
 
