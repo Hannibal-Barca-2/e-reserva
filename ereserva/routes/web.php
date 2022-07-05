@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/ereserva', [App\Http\Controllers\SolicitudesController::class, 'index'])->name('user_home');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home2', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
@@ -43,6 +45,10 @@ Route::get('eventos/eliminar/{id}', [EventosController::class, 'destroy'])->name
 Route::resource('eventos', EventosController::class);
 
 Route::resource('horarios',HorariosController::class);
+
+Route::resource('solicitudes',SolicitudesController::class);
+Route::get('/solicitudes/{idEvento}/reservar}', [SolicitudesController::class, 'create'])->name('solicitudes.reservar');
+
 Route::post('/horarios/{idEvento}/agregar', [HorariosController::class, 'store'])->name('horarios.agregar');
 Route::get('horarios/eliminar/{id}', [HorariosController::class, 'destroy'])->name('horarios.eliminar');
 // Route::post('horarios',[HorariosController::class, 'create'])->name('horario.crear')

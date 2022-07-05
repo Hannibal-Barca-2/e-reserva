@@ -10,59 +10,50 @@ class SolicitudesController extends Controller
 {
     public function index()
     {
-
+        $eventos = DB::table('eventos')
+        ->select('Eventos.id','Eventos.NombreEvento','Eventos.Descripcion')
+        ->get();
+        return view('user_home', compact('eventos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create($IdEvento)
+    {   
+        $nombreEvento = DB::table('Eventos')
+        ->select('NombreEvento')
+        ->where('id','=',$IdEvento)
+        ->get();
+
+        $diasDisponibles = DB::table('Horarios')
+        ->select('Dia')
+        ->where('id','=',$IdEvento)
+        ->where('Status','=','Disponible')
+        ->get();
+
+        $horasDisponibles = DB::table('Horarios')
+        ->select('Hora')
+        ->where('id','=',$IdEvento)
+        ->where('Status','=','Disponible')
+        ->get();
+        
+        return view('solicitudes.crear',compact('nombreEvento','IdEvento'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update($solicitud)
     {   
         $user_id=auth()->id();
@@ -75,12 +66,12 @@ class SolicitudesController extends Controller
         DB::table('Horarios')
         ->join('Eventos', 'Horarios.IdEvento','=','Eventos.id')
         ->join('Solicitudes', 'Eventos.id', '=', 'Solicitudes.IdEvento')
+        ->where('Solicitudes.id','=', $solicitud)
         ->where('Solicitudes.Status', '=', 'Aceptada')
-        ->where('Solicitudes.FechaSolicitada','=','Horarios.Dia')
-        ->where('Solicitudes.HoraSolicitada','=','Horarios.Hora')
+        ->whereDate('Solicitudes.FechaSolicitada', 'Horarios.Dia')
+        ->whereTime('Solicitudes.HoraSolicitada', '=', 'Horarios.Hora')
         ->update(['Horarios.Status'=>'Ocupado']);
         
-
         return redirect()->route('home2');
     }
 
