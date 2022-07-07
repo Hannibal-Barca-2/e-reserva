@@ -38,8 +38,6 @@ Route::get('solicitudes/rechazar/{id}', [SolicitudesController::class, 'destroy'
 
 Route::get('citas/eliminar/{id}', [CitasController::class, 'destroy'])->name('citas.eliminar');
 
-// Route::get('eventos/crear', [EventosController::class, 'create'])->name('eventos.crear');
-
 Route::get('eventos/eliminar/{id}', [EventosController::class, 'destroy'])->name('eventos.eliminar');
 
 Route::resource('eventos', EventosController::class);
@@ -51,6 +49,3 @@ Route::get('/solicitudes/{idEvento}/reservar}', [SolicitudesController::class, '
 
 Route::post('/horarios/{idEvento}/agregar', [HorariosController::class, 'store'])->name('horarios.agregar');
 Route::get('horarios/eliminar/{id}', [HorariosController::class, 'destroy'])->name('horarios.eliminar');
-// Route::post('horarios',[HorariosController::class, 'create'])->name('horario.crear')
-
-// Route::get('/eventos/crear', [App\Http\Controllers\EventosController::class, 'create'])->name('crearevento');

@@ -30,8 +30,8 @@
                     <td>{{ $solicitud->NumeroTelefono }}</td>
                     <td>
                         <form>
-                            <a class="btn btn-success" href="{{ route('solicitudes.aceptar',$solicitud->id) }}"><i class="fa-solid fa-circle-plus"></i></a>
-                            <a class="btn btn-danger" href="{{ route('solicitudes.rechazar', $solicitud->id) }}"><i class="fa-solid fa-ban"></i></a>
+                            <a class="btn btn-success" href="{{ route('solicitudes.aceptar',$solicitud->id) }}"><i class="fa-solid fa-circle-check"></i></a>
+                            <a class="btn btn-danger" href="{{ route('solicitudes.rechazar', $solicitud->id) }}"><i class="fa-solid fa-trash"></i></a>
                         </form>
                     </td>
                 </tr>

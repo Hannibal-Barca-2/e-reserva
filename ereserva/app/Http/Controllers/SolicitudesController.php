@@ -25,17 +25,37 @@ class SolicitudesController extends Controller
 
         $diasDisponibles = DB::table('Horarios')
         ->select('Dia')
-        ->where('id','=',$IdEvento)
+        ->where('IdEvento','=',$IdEvento)
         ->where('Status','=','Disponible')
+        ->groupBy('Dia')
         ->get();
 
         $horasDisponibles = DB::table('Horarios')
         ->select('Hora')
-        ->where('id','=',$IdEvento)
+        ->where('IdEvento','=',$IdEvento)
         ->where('Status','=','Disponible')
         ->get();
-        
-        return view('solicitudes.crear',compact('nombreEvento','IdEvento'));
+
+        $array_dias=[];
+        $array_horas=[];
+
+        for($i=0; $i<=count($horasDisponibles)-1; $i++){
+            $array_horas[$i] = $horasDisponibles[$i]->Hora;
+        }
+
+        for($i=0; $i<=count($diasDisponibles)-1; $i++){
+            $array_dias[$i] = $diasDisponibles[$i]->Dia;
+        }
+
+        $array_horas = json_encode($array_horas);
+        $array_dias = json_encode($array_dias);
+
+        return view('solicitudes.crear',compact(
+            'nombreEvento',
+            'IdEvento', 
+            'array_horas',
+            'array_dias'
+        ));
     }
 
     public function store(Request $request)
@@ -68,8 +88,8 @@ class SolicitudesController extends Controller
         ->join('Solicitudes', 'Eventos.id', '=', 'Solicitudes.IdEvento')
         ->where('Solicitudes.id','=', $solicitud)
         ->where('Solicitudes.Status', '=', 'Aceptada')
-        ->whereDate('Solicitudes.FechaSolicitada', 'Horarios.Dia')
-        ->whereTime('Solicitudes.HoraSolicitada', '=', 'Horarios.Hora')
+        ->whereColumn('Solicitudes.FechaSolicitada','Horarios.Dia')
+        ->whereColumn('Solicitudes.HoraSolicitada','Horarios.Hora')
         ->update(['Horarios.Status'=>'Ocupado']);
         
         return redirect()->route('home2');
@@ -78,11 +98,21 @@ class SolicitudesController extends Controller
     public function destroy($solicitud)
     {
         $user_id = auth()->id();
+        
+        DB::table('Horarios')
+        ->join('Eventos', 'Horarios.IdEvento','=','Eventos.id')
+        ->join('Solicitudes', 'Eventos.id', '=', 'Solicitudes.IdEvento')
+        ->where('Solicitudes.id','=', $solicitud)
+        ->whereColumn('Solicitudes.FechaSolicitada','Horarios.Dia')
+        ->whereColumn('Solicitudes.HoraSolicitada','Horarios.Hora')
+        ->update(['Horarios.Status'=>'Disponible']);
+        
         DB::table('Solicitudes')
         ->join('Eventos','Solicitudes.IdEvento','=','Eventos.id')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->where('Solicitudes.id','=',$solicitud)
         ->delete();
+        
 
         return redirect()->route('home2');
     }
