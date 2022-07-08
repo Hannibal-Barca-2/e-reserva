@@ -5434,19 +5434,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 // import Swal from "sweetalert2";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     array_dias: "",
-    array_horas: ""
+    array_horas: "",
+    id_evento: ""
   },
   data: function data() {
-    return {};
+    return {
+      dia_reserva: "",
+      hora_reserva: "",
+      nombre_solicitante: "",
+      apellido_solicitante: "",
+      email: "",
+      numero_telefono: ""
+    };
   },
   created: function created() {},
   methods: {
     reservar: function reservar() {
       var data = new FormData();
+      data.append("dia_reserva", this.dia_reserva);
+      data.append("hora_reserva", this.hora_reserva);
+      data.append("nombre_solicitante", this.nombre_solicitante);
+      data.append("apellido_solicitante", this.apellido_solicitante);
+      data.append("email", this.email);
+      data.append("numero_telefono", this.numero_telefono);
+      axios.post("/solicitudes", data, id_evento).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   computed: {}
@@ -28041,8 +28066,232 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {}
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row justify-content-center align-items-center" },
+    [
+      _c("div", { staticClass: "col-sm-auto col-8" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function ($event) {
+                return _vm.reservar()
+              },
+            },
+          },
+          [
+            _c("h4", [_vm._v("Dia que desea reservar:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dia_reserva,
+                    expression: "dia_reserva",
+                  },
+                ],
+                staticClass: "form-select form-control mb-2",
+                attrs: { name: "dia" },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.dia_reserva = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                },
+              },
+              _vm._l(_vm.array_dias, function (dia, id) {
+                return _c("option", { key: id, domProps: { value: dia } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(dia) +
+                      "\n                "
+                  ),
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Hora que desea reservar:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.hora_reserva,
+                    expression: "hora_reserva",
+                  },
+                ],
+                staticClass: "form-select form-control mb-2",
+                attrs: { name: "hora" },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.hora_reserva = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                },
+              },
+              _vm._l(_vm.array_horas, function (hora, id) {
+                return _c("option", { key: id, domProps: { value: hora } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(hora) +
+                      "\n                "
+                  ),
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Nombre del Solicitante:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nombre_solicitante,
+                  expression: "nombre_solicitante",
+                },
+              ],
+              staticClass: "form-control mb-2",
+              attrs: { name: "nombre", type: "text", placeholder: "Nombre" },
+              domProps: { value: _vm.nombre_solicitante },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.nombre_solicitante = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Apellido del solicitante:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.apellido_solicitante,
+                  expression: "apellido_solicitante",
+                },
+              ],
+              staticClass: "form-control mb-2",
+              attrs: {
+                name: "apellido",
+                type: "text",
+                placeholder: "Apellido",
+              },
+              domProps: { value: _vm.apellido_solicitante },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.apellido_solicitante = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Correo electronico:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email",
+                },
+              ],
+              staticClass: "form-control mb-2",
+              attrs: { name: "email", type: "text", placeholder: "Email" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Número Teléfonico:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.numero_telefono,
+                  expression: "numero_telefono",
+                },
+              ],
+              staticClass: "form-control mb-2",
+              attrs: {
+                name: "telefono",
+                type: "text",
+                placeholder: "No. Teléfono",
+              },
+              domProps: { value: _vm.numero_telefono },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.numero_telefono = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit" },
+                on: { click: _vm.reservar },
+              },
+              [_vm._v("Reservar")]
+            ),
+          ]
+        ),
+      ]),
+    ]
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

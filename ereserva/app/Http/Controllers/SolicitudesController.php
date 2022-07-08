@@ -18,6 +18,8 @@ class SolicitudesController extends Controller
 
     public function create($IdEvento)
     {   
+        $id_evento = $IdEvento;
+
         $nombreEvento = DB::table('Eventos')
         ->select('NombreEvento')
         ->where('id','=',$IdEvento)
@@ -54,13 +56,37 @@ class SolicitudesController extends Controller
             'nombreEvento',
             'IdEvento', 
             'array_horas',
-            'array_dias'
+            'array_dias',
+            'id_evento',
         ));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $IdEvento)
     {
-        //
+        // $this->validate($request[
+        //     'FechaSolicitada' => 'required|date',
+        //     'HoraSolicitada' => 'required|time',
+        //     'NombreSolicitante' => 'reqired',
+        //     'ApellidoSolicitante' => 'required',
+        //     'NumeroTelefono' => 'required',
+        //     'Email' => 'required',
+        // ]);
+
+        $input['FechaSolicitada']= $request->dia_reserva;
+        $input['HoraSolicitada']= $request->hora_reserva;
+        $input['NombreSolicitante']= $request->nombre_solicitante;
+        $input['ApellidoSolicitante']= $request->apellido_solicitante;
+        $input['Email']= $request->email;
+        $input['NumeroTelefono']= $request->numero_telefono;
+        $input['FechaEnvio'] = date("Y-m-d");
+        $input['Status']='Pendiente';
+        $input['IdEvento']=$IdEvento;
+
+        
+        Solicitud::create($input); 
+
+
+        
     }
 
     public function show($id)
