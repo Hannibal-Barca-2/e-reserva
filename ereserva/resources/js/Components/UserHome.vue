@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-auto col-8">
-            <form @submit="reservar()">
+            <form @submit.prevent="reservar(id_evento)">
                 <h4>Dia que desea reservar:</h4>
                 <select
                     name="dia"
@@ -89,11 +89,12 @@ export default {
             apellido_solicitante:"",
             email:"",
             numero_telefono:"",
+            
         };
     },
     created() {},
     methods: {
-        reservar() {
+        reservar(id_evento) {
             let data = new FormData();
             data.append("dia_reserva",this.dia_reserva);
             data.append("hora_reserva",this.hora_reserva);
@@ -101,13 +102,15 @@ export default {
             data.append("apellido_solicitante",this.apellido_solicitante);
             data.append("email",this.email);
             data.append("numero_telefono",this.numero_telefono);
+            data.append("id_evento", this.id_evento);
             axios
-                .post("/solicitudes", data, id_evento)
+                .post("/reservas", data)
                 .then((res) => {
                     console.log(res.data);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.log(error.response.data);
+                    console.log(data);
                 });
         },
     },

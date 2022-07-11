@@ -8,6 +8,7 @@ use App\Http\Controllers\SesionController;
 use App\Http\Controllers\SolicitudesController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\HorariosController;
+use App\Http\Controllers\ReservaController;
 use App\Models\Horario;
 use Facade\IgnitionContracts\Solution;
 
@@ -44,8 +45,11 @@ Route::resource('eventos', EventosController::class);
 
 Route::resource('horarios',HorariosController::class);
 
-Route::resource('solicitudes',SolicitudesController::class);
+Route::resource('reservas',ReservaController::class);
+
 Route::get('/solicitudes/{idEvento}/reservar}', [SolicitudesController::class, 'create'])->name('solicitudes.reservar');
 
 Route::post('/horarios/{idEvento}/agregar', [HorariosController::class, 'store'])->name('horarios.agregar');
 Route::get('horarios/eliminar/{id}', [HorariosController::class, 'destroy'])->name('horarios.eliminar');
+
+// Route::post('/reservar/{IdEvento}', [SolicitudesController::class, 'store'])->name('reservar');

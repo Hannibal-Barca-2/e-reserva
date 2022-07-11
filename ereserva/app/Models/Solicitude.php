@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitud extends Model
+class Solicitude extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'FechaEnvio',
         'FechaSolicitada',
         'HoraSolicitada',
         'Nombre Solicitante',
@@ -18,4 +19,5 @@ class Solicitud extends Model
         'Email',
         'IdEvento',
     ];
+    public $timestamps = false;
 }

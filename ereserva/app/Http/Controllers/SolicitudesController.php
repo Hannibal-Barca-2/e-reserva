@@ -80,8 +80,8 @@ class SolicitudesController extends Controller
         $input['NumeroTelefono']= $request->numero_telefono;
         $input['FechaEnvio'] = date("Y-m-d");
         $input['Status']='Pendiente';
-        $input['IdEvento']=$IdEvento;
-
+        $input['IdEvento']= $request->idevento;
+        $input['FechaEnvio']= date();
         
         Solicitud::create($input); 
 

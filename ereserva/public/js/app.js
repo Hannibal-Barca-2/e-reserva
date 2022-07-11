@@ -5459,7 +5459,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
-    reservar: function reservar() {
+    reservar: function reservar(id_evento) {
       var data = new FormData();
       data.append("dia_reserva", this.dia_reserva);
       data.append("hora_reserva", this.hora_reserva);
@@ -5467,10 +5467,12 @@ __webpack_require__.r(__webpack_exports__);
       data.append("apellido_solicitante", this.apellido_solicitante);
       data.append("email", this.email);
       data.append("numero_telefono", this.numero_telefono);
-      axios.post("/solicitudes", data, id_evento).then(function (res) {
+      data.append("id_evento", this.id_evento);
+      axios.post("/reservas", data).then(function (res) {
         console.log(res.data);
       })["catch"](function (error) {
-        console.log(error);
+        console.log(error.response.data);
+        console.log(data);
       });
     }
   },
@@ -28080,7 +28082,8 @@ var render = function () {
           {
             on: {
               submit: function ($event) {
-                return _vm.reservar()
+                $event.preventDefault()
+                return _vm.reservar(_vm.id_evento)
               },
             },
           },
