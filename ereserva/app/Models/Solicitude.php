@@ -13,10 +13,11 @@ class Solicitude extends Model
         'FechaEnvio',
         'FechaSolicitada',
         'HoraSolicitada',
-        'Nombre Solicitante',
+        'NombreSolicitante',
         'ApellidoSolicitante',
         'NumeroTelefono',
         'Email',
+        'Status',
         'IdEvento',
     ];
     public $timestamps = false;

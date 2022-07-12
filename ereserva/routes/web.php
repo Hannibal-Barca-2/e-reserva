@@ -46,6 +46,8 @@ Route::resource('eventos', EventosController::class);
 Route::resource('horarios',HorariosController::class);
 
 Route::resource('reservas',ReservaController::class);
+Route::post('/traer_horas', [App\Http\Controllers\ReservaController::class, 'traerHoras']);
+
 
 Route::get('/solicitudes/{idEvento}/reservar}', [SolicitudesController::class, 'create'])->name('solicitudes.reservar');
 

@@ -15,7 +15,7 @@
             </p>
             <p>
                 Hora de inicio:
-                <input name="HoraInicio" type="time" class="form-control mb-2" value="{{$horario[0]->Hora}}"/>
+                <input name="Hora" type="time" class="form-control mb-2" value="{{$horario[0]->Hora}}"/>
             </p>
             <button class="button button1" type="submit">Editar</button>
         </form>

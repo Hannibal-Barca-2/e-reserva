@@ -5440,6 +5440,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // import Swal from "sweetalert2";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5454,12 +5457,15 @@ __webpack_require__.r(__webpack_exports__);
       nombre_solicitante: "",
       apellido_solicitante: "",
       email: "",
-      numero_telefono: ""
+      numero_telefono: "",
+      evento: this.id_evento
     };
   },
-  created: function created() {},
+  created: function created() {
+    console.log(this.evento);
+  },
   methods: {
-    reservar: function reservar(id_evento) {
+    reservar: function reservar() {
       var data = new FormData();
       data.append("dia_reserva", this.dia_reserva);
       data.append("hora_reserva", this.hora_reserva);
@@ -5467,12 +5473,11 @@ __webpack_require__.r(__webpack_exports__);
       data.append("apellido_solicitante", this.apellido_solicitante);
       data.append("email", this.email);
       data.append("numero_telefono", this.numero_telefono);
-      data.append("id_evento", this.id_evento);
+      data.append("id_evento", this.evento);
       axios.post("/reservas", data).then(function (res) {
         console.log(res.data);
       })["catch"](function (error) {
         console.log(error.response.data);
-        console.log(data);
       });
     }
   },
@@ -28077,13 +28082,15 @@ var render = function () {
     { staticClass: "row justify-content-center align-items-center" },
     [
       _c("div", { staticClass: "col-sm-auto col-8" }, [
+        _c("h4", [_vm._v("\n    " + _vm._s(_vm.id_evento) + "\n    ")]),
+        _vm._v(" "),
         _c(
           "form",
           {
             on: {
               submit: function ($event) {
                 $event.preventDefault()
-                return _vm.reservar(_vm.id_evento)
+                return _vm.reservar()
               },
             },
           },
@@ -28280,11 +28287,7 @@ var render = function () {
             _vm._v(" "),
             _c(
               "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit" },
-                on: { click: _vm.reservar },
-              },
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Reservar")]
             ),
           ]

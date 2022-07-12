@@ -1,7 +1,10 @@
 <template>
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-auto col-8">
-            <form @submit.prevent="reservar(id_evento)">
+        <h4>
+        {{id_evento}}
+        </h4>
+            <form @submit.prevent="reservar()">
                 <h4>Dia que desea reservar:</h4>
                 <select
                     name="dia"
@@ -65,7 +68,7 @@
                     placeholder="No. Teléfono"
                     v-model="numero_telefono"
                 />
-                <button class="btn btn-primary" type="submit" @click="reservar">Reservar</button>
+                <button class="btn btn-primary" type="submit">Reservar</button>
             </form>
         </div>
     </div>
@@ -89,12 +92,15 @@ export default {
             apellido_solicitante:"",
             email:"",
             numero_telefono:"",
-            
+            evento: this.id_evento,
         };
     },
-    created() {},
+    created() {
+
+        console.log(this.evento);
+    },
     methods: {
-        reservar(id_evento) {
+        reservar() {
             let data = new FormData();
             data.append("dia_reserva",this.dia_reserva);
             data.append("hora_reserva",this.hora_reserva);
@@ -102,7 +108,8 @@ export default {
             data.append("apellido_solicitante",this.apellido_solicitante);
             data.append("email",this.email);
             data.append("numero_telefono",this.numero_telefono);
-            data.append("id_evento", this.id_evento);
+            data.append("id_evento", this.evento);
+            
             axios
                 .post("/reservas", data)
                 .then((res) => {
@@ -110,7 +117,6 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error.response.data);
-                    console.log(data);
                 });
         },
     },
