@@ -31,7 +31,7 @@
                     <td scope="col">{{ $cita->NumeroTelefono }}</td>
                     <td scope="col">
                         <form>
-                            <a class="btn btn-danger" href="{{ route('citas.eliminar', $cita->id) }}"><i class="fa-solid fa-ban"></i></a>
+                            <a class="btn btn-danger" href="{{ route('citas.eliminar', $cita->id) }}"><i class="fa-solid fa-trash"></i></a>
                         </form>
                     </td>
                 </tr>

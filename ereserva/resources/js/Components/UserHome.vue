@@ -1,16 +1,13 @@
 <template>
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-auto col-8">
-        <h4>
-        {{id_evento}}
-        </h4>
             <form @submit.prevent="reservar()">
                 <h4>Dia que desea reservar:</h4>
                 <select
                     name="dia"
                     class="form-select form-control mb-2"
                     v-model="dia_reserva"
-                    
+                    @change="consultarHoras"
                 >
                     <option
                         v-for="(dia, id) in array_dias"
@@ -28,11 +25,11 @@
                     v-model="hora_reserva"
                 >
                     <option
-                        v-for="(hora, id) in array_horas"
+                        v-for="(hora, id) in horasDisponibles"
                         :value="hora"
                         :key="id"
                     >
-                        {{hora}}
+                        {{ hora }}
                     </option>
                 </select>
 
@@ -74,46 +71,73 @@
     </div>
 </template>
 <script>
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 export default {
-    
     props: {
         array_dias: "",
         array_horas: "",
         id_evento: "",
     },
-     
+
     data() {
         return {
-            dia_reserva:"",
-            hora_reserva:"",
-            nombre_solicitante:"",
-            apellido_solicitante:"",
-            email:"",
-            numero_telefono:"",
+            dia_reserva: "",
+            hora_reserva: "",
+            nombre_solicitante: "",
+            apellido_solicitante: "",
+            email: "",
+            numero_telefono: "",
             evento: this.id_evento,
+
+            horasDisponibles: "",
         };
     },
     created() {
-
         console.log(this.evento);
     },
     methods: {
         reservar() {
             let data = new FormData();
-            data.append("dia_reserva",this.dia_reserva);
-            data.append("hora_reserva",this.hora_reserva);
-            data.append("nombre_solicitante",this.nombre_solicitante);
-            data.append("apellido_solicitante",this.apellido_solicitante);
-            data.append("email",this.email);
-            data.append("numero_telefono",this.numero_telefono);
+            data.append("dia_reserva", this.dia_reserva);
+            data.append("hora_reserva", this.hora_reserva);
+            data.append("nombre_solicitante", this.nombre_solicitante);
+            data.append("apellido_solicitante", this.apellido_solicitante);
+            data.append("email", this.email);
+            data.append("numero_telefono", this.numero_telefono);
             data.append("id_evento", this.evento);
-            
+
             axios
                 .post("/reservas", data)
                 .then((res) => {
                     console.log(res.data);
+                    Swal.fire({
+                        title: "Se ha enviado tu solicitud, se contactaran con usted",
+                        icon: "success",
+                        howClass: {
+                            popup: "animate__animated animate__fadeInDown",
+                        },
+                        hideClass: {
+                            popup: "animate__animated animate__fadeOutUp",
+                        },
+                    }).then(function () {
+                        
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error.response.data);
+                });
+        },
+
+        consultarHoras() {
+            let data = new FormData();
+            data.append("dia_reserva", this.dia_reserva);
+            data.append("id_evento", this.evento);
+
+            axios
+                .post("/traer_horas", data)
+                .then((res) => {
+                    this.horasDisponibles = res.data;
                 })
                 .catch(function (error) {
                     console.log(error.response.data);

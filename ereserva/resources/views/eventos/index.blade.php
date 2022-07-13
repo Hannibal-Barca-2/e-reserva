@@ -20,7 +20,7 @@
                         <td scope="col">{{ $evento->NombreEvento }}</td>
                         <td scope="col">{{ $evento->Descripcion }}</td>
                         <td scope="col">
-                            <a class="btn btn-danger" href="{{ route('eventos.eliminar', $evento->id) }}"><i class="fa-solid fa-ban"></i></a>
+                            <a class="btn btn-danger" href="{{ route('eventos.eliminar', $evento->id) }}"><i class="fa-solid fa-trash"></i></a>
                             <a class="btn btn-primary" href="{{ route('eventos.edit', $evento->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a class="btn btn-success" href="{{ route('horarios.show', $evento->id) }}"><i class="fa-solid fa-clock"></i></a>
                         </td>

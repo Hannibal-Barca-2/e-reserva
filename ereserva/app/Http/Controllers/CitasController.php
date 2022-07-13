@@ -22,76 +22,50 @@ class CitasController extends Controller
      return view('citas.index', compact('citas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($cita)
     {
         $user_id = auth()->id();
+
+        DB::table('Horarios')
+        ->join('Eventos','Horarios.IdEvento','=','Eventos.id')
+        ->join('Solicitudes','Eventos.id','=','Solicitudes.IdEvento')
+        ->where('Horarios.Status', '=', 'Ocupado')
+        ->where('Eventos.IdUsuario','=',$user_id)
+        ->where('Solicitudes.id','=',$cita)
+        ->update(['Horarios.Status'=>'Disponible']);
+
         DB::table('Solicitudes')
         ->join('Eventos','Solicitudes.IdEvento','=','Eventos.id')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->where('Solicitudes.id','=',$cita)
         ->where('Solicitudes.Status','=','Aceptada')
         ->delete();
+
 
         return redirect()->route('citas');
     }

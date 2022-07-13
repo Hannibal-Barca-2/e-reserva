@@ -64,14 +64,19 @@ class ReservaController extends Controller
         //
     }
 
-    public function traerHoras($evento,$dia)
+    public function traerHoras(Request $request)
     {
         $horas = DB::table('horarios')
         ->select('Hora')
-        ->where('IdEvento', $evento)
-        ->where('Dia', $dia)
+        ->where('IdEvento', $request->id_evento)
+        ->where('Dia', $request->dia_reserva)
+        ->where('Status', 'Disponible')
         ->get();
         
-        return $horas;
+        for($i=0; $i<=count($horas)-1; $i++){
+            $arrayhoras[$i]=$horas[$i]->Hora;
+        }
+
+        return $arrayhoras;
     }
 }

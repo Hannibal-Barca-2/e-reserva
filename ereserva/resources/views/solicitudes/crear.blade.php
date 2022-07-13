@@ -5,9 +5,8 @@
 @endsection
 
 @section('content')
-    <h4>{{ $array_dias }}</h4>
     <cliente-component :array_horas="{{ $array_horas }}" :array_dias="{{ $array_dias }}"
-                        :id_evento="{{ $id_evento }}"></cliente-component>
+                        :id_evento="{{ $id_evento }}" ></cliente-component>
 @endsection
 
 @section('scripts')
