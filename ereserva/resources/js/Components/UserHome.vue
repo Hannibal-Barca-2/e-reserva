@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-auto col-8">
-            <form @submit.prevent="reservar()">
+            <form @submit.prevent="validarFormulario()">
                 <h4>Dia que desea reservar:</h4>
                 <select
                     name="dia"
@@ -65,7 +65,17 @@
                     placeholder="No. Teléfono"
                     v-model="numero_telefono"
                 />
-                <button class="btn btn-primary" type="submit">Reservar</button>
+                <p v-if="errores.length">
+                    <b>
+                    Por favor revise los siguientes errores:
+                    </b>
+                    <ul>
+                        <li v-for="error in errores">
+                         {{error}}
+                        </li>
+                    </ul>
+                </p>
+                <button class="btn btn-primary" type="submit" @click="reservar()">Reservar</button>
             </form>
         </div>
     </div>
@@ -82,6 +92,7 @@ export default {
 
     data() {
         return {
+            errores: [],
             dia_reserva: "",
             hora_reserva: "",
             nombre_solicitante: "",
@@ -110,9 +121,9 @@ export default {
             axios
                 .post("/reservas", data)
                 .then((res) => {
-                    console.log(res.data);
                     Swal.fire({
-                        title: "Se ha enviado tu solicitud, se contactaran con usted",
+                        title: "Se ha enviado tu solicitud",
+                        text: "Pronto nos contactaremos contigo",
                         icon: "success",
                         howClass: {
                             popup: "animate__animated animate__fadeInDown",
@@ -121,12 +132,57 @@ export default {
                             popup: "animate__animated animate__fadeOutUp",
                         },
                     }).then(function () {
-                        
+                        location.reload();
                     });
                 })
                 .catch(function (error) {
-                    console.log(error.response.data);
+                    console.log(error);
                 });
+        },
+
+        validarFormulario: function(e) {
+            if(this.hora_reserva
+            &&this.dia_reserva 
+            &&this.nombre_solicitante 
+            &&this.apellido_solicitante 
+            &&this.numero_telefono 
+            &&this.email){
+                return true;
+            }
+
+            this.errores = [];
+
+            if(!this.hora_reserva){
+             this.errores.push('La hora es obligatoria');   
+            }
+            if(!this.dia_reserva){
+             this.errores.push('El dia es obligatorio');   
+            }
+            if(!this.nombre_solicitante){
+             this.errores.push('El nombre es obligatorio');   
+            }else if(this.apellido_solicitante.length<3){
+                this.errores.push('El nombre no es valido');
+            }
+
+            if(!this.apellido_solicitante){
+             this.errores.push('El apellido es obligatorio');   
+            }else if(this.apellido_solicitante.length<3){
+                this.errores.push('El apellido no es valido');
+            }
+
+            if(!this.numero_telefono){
+             this.errores.push('El número es obligatorio');   
+            }else if(this.numero_telefono.length<10){
+                this.errores.push('El numero de teléfono debe tener 10 digitos');
+            }
+
+            if(!this.email){
+             this.errores.push('El correo es obligatorio');   
+            }else if(!this.validEmail(this.email)){
+                this.errores.push('El correo electrónico debe ser válido.');
+            }
+
+            e.preventDefault();
         },
 
         consultarHoras() {

@@ -5442,6 +5442,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5451,6 +5461,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      errores: [],
       dia_reserva: "",
       hora_reserva: "",
       nombre_solicitante: "",
@@ -5475,9 +5486,9 @@ __webpack_require__.r(__webpack_exports__);
       data.append("numero_telefono", this.numero_telefono);
       data.append("id_evento", this.evento);
       axios.post("/reservas", data).then(function (res) {
-        console.log(res.data);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-          title: "Se ha enviado tu solicitud, se contactaran con usted",
+          title: "Se ha enviado tu solicitud",
+          text: "Pronto nos contactaremos contigo",
           icon: "success",
           howClass: {
             popup: "animate__animated animate__fadeInDown"
@@ -5485,10 +5496,53 @@ __webpack_require__.r(__webpack_exports__);
           hideClass: {
             popup: "animate__animated animate__fadeOutUp"
           }
-        }).then(function () {});
+        }).then(function () {
+          location.reload();
+        });
       })["catch"](function (error) {
-        console.log(error.response.data);
+        console.log(error);
       });
+    },
+    validarFormulario: function validarFormulario(e) {
+      if (this.hora_reserva && this.dia_reserva && this.nombre_solicitante && this.apellido_solicitante && this.numero_telefono && this.email) {
+        return true;
+      }
+
+      this.errores = [];
+
+      if (!this.hora_reserva) {
+        this.errores.push('La hora es obligatoria');
+      }
+
+      if (!this.dia_reserva) {
+        this.errores.push('El dia es obligatorio');
+      }
+
+      if (!this.nombre_solicitante) {
+        this.errores.push('El nombre es obligatorio');
+      } else if (this.apellido_solicitante.length < 3) {
+        this.errores.push('El nombre no es valido');
+      }
+
+      if (!this.apellido_solicitante) {
+        this.errores.push('El apellido es obligatorio');
+      } else if (this.apellido_solicitante.length < 3) {
+        this.errores.push('El apellido no es valido');
+      }
+
+      if (!this.numero_telefono) {
+        this.errores.push('El número es obligatorio');
+      } else if (this.numero_telefono.length < 10) {
+        this.errores.push('El numero de teléfono debe tener 10 digitos');
+      }
+
+      if (!this.email) {
+        this.errores.push('El correo es obligatorio');
+      } else if (!this.validEmail(this.email)) {
+        this.errores.push('El correo electrónico debe ser válido.');
+      }
+
+      e.preventDefault();
     },
     consultarHoras: function consultarHoras() {
       var _this = this;
@@ -32066,7 +32120,7 @@ var render = function () {
             on: {
               submit: function ($event) {
                 $event.preventDefault()
-                return _vm.reservar()
+                return _vm.validarFormulario()
               },
             },
           },
@@ -32264,9 +32318,41 @@ var render = function () {
               },
             }),
             _vm._v(" "),
+            _vm.errores.length
+              ? _c("p", [
+                  _c("b", [
+                    _vm._v(
+                      "\n                Por favor revise los siguientes errores:\n                "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    _vm._l(_vm.errores, function (error) {
+                      return _c("li", [
+                        _vm._v(
+                          "\n                     " +
+                            _vm._s(error) +
+                            "\n                    "
+                        ),
+                      ])
+                    }),
+                    0
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit" },
+                on: {
+                  click: function ($event) {
+                    return _vm.reservar()
+                  },
+                },
+              },
               [_vm._v("Reservar")]
             ),
           ]
