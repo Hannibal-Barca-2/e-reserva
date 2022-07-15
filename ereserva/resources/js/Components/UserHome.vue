@@ -37,6 +37,8 @@
                 <input
                     name="nombre"
                     type="text"
+                    pattern="[a-zA-Z] .{4,}"
+                    title="El nombre ingresado no es valido"
                     class="form-control mb-2"
                     placeholder="Nombre"
                     v-model="nombre_solicitante"
@@ -45,6 +47,8 @@
                 <input
                     name="apellido"
                     type="text"
+                    pattern="[a-zA-Z] .{4,}"
+                    title="El apellido ingresado no es valido"
                     class="form-control mb-2"
                     placeholder="Apellido"
                     v-model="apellido_solicitante"
@@ -60,7 +64,9 @@
                 <h4>Número Teléfonico:</h4>
                 <input
                     name="telefono"
-                    type="text"
+                    type="number"
+                    pattern="{10}"
+                    title="El numero teléfonico debe contener 10 digitos"
                     class="form-control mb-2"
                     placeholder="No. Teléfono"
                     v-model="numero_telefono"
@@ -160,19 +166,22 @@ export default {
             }
             if(!this.nombre_solicitante){
              this.errores.push('El nombre es obligatorio');   
-            }else if(this.apellido_solicitante.length<3){
+            }else if((this.nombre_solicitante.length)<=2){
+                console.log(this.nombre_solicitante.length);
                 this.errores.push('El nombre no es valido');
             }
 
             if(!this.apellido_solicitante){
              this.errores.push('El apellido es obligatorio');   
-            }else if(this.apellido_solicitante.length<3){
+            }else if(this.apellido_solicitante.length<=2){
+                console.log(this.apellido_solicitante.length);
                 this.errores.push('El apellido no es valido');
             }
 
             if(!this.numero_telefono){
              this.errores.push('El número es obligatorio');   
-            }else if(this.numero_telefono.length<10){
+            }else if((this.numero_telefono.length)<=9){
+                console.log(this.numero_telefono);
                 this.errores.push('El numero de teléfono debe tener 10 digitos');
             }
 
@@ -184,7 +193,7 @@ export default {
 
             e.preventDefault();
         },
-
+        
         consultarHoras() {
             let data = new FormData();
             data.append("dia_reserva", this.dia_reserva);

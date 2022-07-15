@@ -5452,6 +5452,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5520,19 +5526,22 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.nombre_solicitante) {
         this.errores.push('El nombre es obligatorio');
-      } else if (this.apellido_solicitante.length < 3) {
+      } else if (this.nombre_solicitante.length <= 2) {
+        console.log(this.nombre_solicitante.length);
         this.errores.push('El nombre no es valido');
       }
 
       if (!this.apellido_solicitante) {
         this.errores.push('El apellido es obligatorio');
-      } else if (this.apellido_solicitante.length < 3) {
+      } else if (this.apellido_solicitante.length <= 2) {
+        console.log(this.apellido_solicitante.length);
         this.errores.push('El apellido no es valido');
       }
 
       if (!this.numero_telefono) {
         this.errores.push('El número es obligatorio');
-      } else if (this.numero_telefono.length < 10) {
+      } else if (this.numero_telefono.length <= 9) {
+        console.log(this.numero_telefono);
         this.errores.push('El numero de teléfono debe tener 10 digitos');
       }
 
@@ -32226,7 +32235,13 @@ var render = function () {
                 },
               ],
               staticClass: "form-control mb-2",
-              attrs: { name: "nombre", type: "text", placeholder: "Nombre" },
+              attrs: {
+                name: "nombre",
+                type: "text",
+                pattern: "[a-zA-Z] .{4,}",
+                title: "El nombre ingresado no es valido",
+                placeholder: "Nombre",
+              },
               domProps: { value: _vm.nombre_solicitante },
               on: {
                 input: function ($event) {
@@ -32253,6 +32268,8 @@ var render = function () {
               attrs: {
                 name: "apellido",
                 type: "text",
+                pattern: "[a-zA-Z] .{4,}",
+                title: "El apellido ingresado no es valido",
                 placeholder: "Apellido",
               },
               domProps: { value: _vm.apellido_solicitante },
@@ -32304,7 +32321,9 @@ var render = function () {
               staticClass: "form-control mb-2",
               attrs: {
                 name: "telefono",
-                type: "text",
+                type: "number",
+                pattern: "{10}",
+                title: "El numero teléfonico debe contener 10 digitos",
                 placeholder: "No. Teléfono",
               },
               domProps: { value: _vm.numero_telefono },
