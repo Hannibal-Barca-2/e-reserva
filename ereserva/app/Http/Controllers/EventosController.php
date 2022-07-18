@@ -14,16 +14,23 @@ class EventosController extends Controller
     public function index()
     {
         $user_id=auth()->id();
+        $fechaactual=now();
+
         $eventos = DB::table('eventos')
         ->select('Eventos.id','Eventos.NombreEvento','Eventos.Descripcion')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->get();
-
+        
         
         $cuenta=DB::table('Solicitudes')
         ->select(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
         ->where('solicitudes.idEvento','=', 13)
         ->get();
+
+        DB::table('Eventos')
+        ->join('Horarios','Eventos.id','=','Horarios.IdEvento')
+        ->where('Horarios.Dia', '<', $fechaactual)
+        ->delete();
 
         $cuenta2 = $cuenta[0]->solicitudes_cuenta;
         return view('eventos.index', compact('eventos','cuenta2'));

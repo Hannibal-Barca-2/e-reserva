@@ -29,33 +29,21 @@ class SolicitudesController extends Controller
         ->select('Dia')
         ->where('IdEvento','=',$IdEvento)
         ->where('Status','=','Disponible')
+        ->where('Dia', '>=', now())
         ->groupBy('Dia')
         ->get();
 
-        $horasDisponibles = DB::table('Horarios')
-        ->select('Hora')
-        ->where('IdEvento','=',$IdEvento)
-        ->where('Status','=','Disponible')
-        ->get();
-
         $array_dias=[];
-        $array_horas=[];
-
-        for($i=0; $i<=count($horasDisponibles)-1; $i++){
-            $array_horas[$i] = $horasDisponibles[$i]->Hora;
-        }
 
         for($i=0; $i<=count($diasDisponibles)-1; $i++){
             $array_dias[$i] = $diasDisponibles[$i]->Dia;
         }
 
-        $array_horas = json_encode($array_horas);
         $array_dias = json_encode($array_dias);
 
         return view('solicitudes.crear',compact(
             'nombreEvento',
             'IdEvento', 
-            'array_horas',
             'array_dias',
             'id_evento',
         ));

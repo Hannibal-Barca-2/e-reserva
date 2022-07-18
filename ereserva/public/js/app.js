@@ -32223,7 +32223,7 @@ var render = function () {
               0
             ),
             _vm._v(" "),
-            _c("h4", [_vm._v("Nombre del Solicitante:")]),
+            _c("h4", [_vm._v("Nombre(s) del Solicitante:")]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -32238,8 +32238,7 @@ var render = function () {
               attrs: {
                 name: "nombre",
                 type: "text",
-                pattern: "[a-zA-Z] .{4,}",
-                title: "El nombre ingresado no es valido",
+                autocomplete: "off",
                 placeholder: "Nombre",
               },
               domProps: { value: _vm.nombre_solicitante },
@@ -32253,7 +32252,7 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _c("h4", [_vm._v("Apellido del solicitante:")]),
+            _c("h4", [_vm._v("Apellido(s) del solicitante:")]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -32268,8 +32267,7 @@ var render = function () {
               attrs: {
                 name: "apellido",
                 type: "text",
-                pattern: "[a-zA-Z] .{4,}",
-                title: "El apellido ingresado no es valido",
+                autocomplete: "off",
                 placeholder: "Apellido",
               },
               domProps: { value: _vm.apellido_solicitante },
@@ -32295,7 +32293,12 @@ var render = function () {
                 },
               ],
               staticClass: "form-control mb-2",
-              attrs: { name: "email", type: "text", placeholder: "Email" },
+              attrs: {
+                name: "email",
+                type: "text",
+                autocomplete: "off",
+                placeholder: "Email",
+              },
               domProps: { value: _vm.email },
               on: {
                 input: function ($event) {
@@ -32324,6 +32327,7 @@ var render = function () {
                 type: "number",
                 pattern: "{10}",
                 title: "El numero teléfonico debe contener 10 digitos",
+                autocomplete: "off",
                 placeholder: "No. Teléfono",
               },
               domProps: { value: _vm.numero_telefono },

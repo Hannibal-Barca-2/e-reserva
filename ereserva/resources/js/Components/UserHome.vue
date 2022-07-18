@@ -33,22 +33,20 @@
                     </option>
                 </select>
 
-                <h4>Nombre del Solicitante:</h4>
+                <h4>Nombre(s) del Solicitante:</h4>
                 <input
                     name="nombre"
                     type="text"
-                    pattern="[a-zA-Z] .{4,}"
-                    title="El nombre ingresado no es valido"
+                    autocomplete="off"
                     class="form-control mb-2"
                     placeholder="Nombre"
                     v-model="nombre_solicitante"
                 />
-                <h4>Apellido del solicitante:</h4>
+                <h4>Apellido(s) del solicitante:</h4>
                 <input
                     name="apellido"
                     type="text"
-                    pattern="[a-zA-Z] .{4,}"
-                    title="El apellido ingresado no es valido"
+                    autocomplete="off"
                     class="form-control mb-2"
                     placeholder="Apellido"
                     v-model="apellido_solicitante"
@@ -57,6 +55,7 @@
                 <input
                     name="email"
                     type="text"
+                    autocomplete="off"
                     class="form-control mb-2"
                     placeholder="Email"
                     v-model="email"
@@ -67,6 +66,7 @@
                     type="number"
                     pattern="{10}"
                     title="El numero teléfonico debe contener 10 digitos"
+                    autocomplete="off"
                     class="form-control mb-2"
                     placeholder="No. Teléfono"
                     v-model="numero_telefono"

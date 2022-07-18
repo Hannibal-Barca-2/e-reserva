@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <cliente-component :array_horas="{{ $array_horas }}" :array_dias="{{ $array_dias }}"
+    <cliente-component  :array_dias="{{ $array_dias }}"
                         :id_evento="{{ $id_evento }}" ></cliente-component>
 @endsection
 

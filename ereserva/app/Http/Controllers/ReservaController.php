@@ -20,10 +20,10 @@ class ReservaController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request[
-        //     'FechaSolicitada' => 'required|date',
-        //     'HoraSolicitada' => 'required|time',
-        //     'NombreSolicitante' => 'reqired',
+        // $this->validate($request, [
+        //     'FechaSolicitada' => 'required',
+        //     'HoraSolicitada' => 'required',
+        //     'NombreSolicitante' => 'required',
         //     'ApellidoSolicitante' => 'required',
         //     'NumeroTelefono' => 'required',
         //     'Email' => 'required',
@@ -66,6 +66,7 @@ class ReservaController extends Controller
 
     public function traerHoras(Request $request)
     {
+
         $horas = DB::table('horarios')
         ->select('Hora')
         ->where('IdEvento', $request->id_evento)
