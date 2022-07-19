@@ -20,14 +20,14 @@ class ReservaController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'FechaSolicitada' => 'required',
-        //     'HoraSolicitada' => 'required',
-        //     'NombreSolicitante' => 'required',
-        //     'ApellidoSolicitante' => 'required',
-        //     'NumeroTelefono' => 'required',
-        //     'Email' => 'required',
-        // ]);
+        $this->validate($request, [
+            'dia_reserva' => 'required',
+            'hora_reserva' => 'required',
+            'nombre_solicitante' => 'required|string|min:4|regex:/^[\pL\s\-]+$/u',
+            'apellido_solicitante' => 'required|string|min:4|regex:/^[\pL\s\-]+$/u',
+            'numero_telefono' => 'required|numeric|digits:10',
+            'email' => 'required|email',
+        ]);
 
         $input['FechaSolicitada'] = $request->dia_reserva;
         $input['HoraSolicitada'] = $request->hora_reserva;

@@ -3,6 +3,9 @@
         <div class="col-sm-auto col-8">
             <form @submit.prevent="validarFormulario()">
                 <h4>Dia que desea reservar:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.dia_reserva">
+                    {{ errores.dia_reserva[0] }}
+                </div>
                 <select
                     name="dia"
                     class="form-select form-control mb-2"
@@ -19,6 +22,9 @@
                 </select>
 
                 <h4>Hora que desea reservar:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.hora_reserva">
+                    {{ errores.hora_reserva[0] }}
+                </div>
                 <select
                     name="hora"
                     class="form-select form-control mb-2"
@@ -34,6 +40,9 @@
                 </select>
 
                 <h4>Nombre(s) del Solicitante:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.nombre_solicitante">
+                    {{ errores.nombre_solicitante[0] }}
+                </div>
                 <input
                     name="nombre"
                     type="text"
@@ -42,7 +51,11 @@
                     placeholder="Nombre"
                     v-model="nombre_solicitante"
                 />
+                
                 <h4>Apellido(s) del solicitante:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.apellido_solicitante">
+                    {{ errores.apellido_solicitante[0] }}
+                </div>
                 <input
                     name="apellido"
                     type="text"
@@ -52,6 +65,9 @@
                     v-model="apellido_solicitante"
                 />
                 <h4>Correo electronico:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.email">
+                    {{ errores.email[0] }}
+                </div>
                 <input
                     name="email"
                     type="text"
@@ -61,6 +77,9 @@
                     v-model="email"
                 />
                 <h4>Número Teléfonico:</h4>
+                <div class="alert alert-danger" v-if="errores && errores.numero_telefono">
+                    {{ errores.numero_telefono[0] }}
+                </div>
                 <input
                     name="telefono"
                     type="number"
@@ -98,7 +117,7 @@ export default {
 
     data() {
         return {
-            errores: [],
+            errores: {},
             dia_reserva: "",
             hora_reserva: "",
             nombre_solicitante: "",
@@ -141,8 +160,11 @@ export default {
                         location.reload();
                     });
                 })
-                .catch(function (error) {
-                    console.log(error);
+                .catch(error => {
+                    if(error.response.status == 422){
+                        this.errores = error.response.data.errors;
+                    }
+                    console.log(this.errores);
                 });
         },
 

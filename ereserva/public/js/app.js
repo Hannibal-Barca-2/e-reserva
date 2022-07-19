@@ -5458,6 +5458,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5467,7 +5486,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      errores: [],
+      errores: {},
       dia_reserva: "",
       hora_reserva: "",
       nombre_solicitante: "",
@@ -5483,6 +5502,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     reservar: function reservar() {
+      var _this = this;
+
       var data = new FormData();
       data.append("dia_reserva", this.dia_reserva);
       data.append("hora_reserva", this.hora_reserva);
@@ -5506,7 +5527,11 @@ __webpack_require__.r(__webpack_exports__);
           location.reload();
         });
       })["catch"](function (error) {
-        console.log(error);
+        if (error.response.status == 422) {
+          _this.errores = error.response.data.errors;
+        }
+
+        console.log(_this.errores);
       });
     },
     validarFormulario: function validarFormulario(e) {
@@ -5554,13 +5579,13 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
     },
     consultarHoras: function consultarHoras() {
-      var _this = this;
+      var _this2 = this;
 
       var data = new FormData();
       data.append("dia_reserva", this.dia_reserva);
       data.append("id_evento", this.evento);
       axios.post("/traer_horas", data).then(function (res) {
-        _this.horasDisponibles = res.data;
+        _this2.horasDisponibles = res.data;
       })["catch"](function (error) {
         console.log(error.response.data);
       });
@@ -32136,6 +32161,16 @@ var render = function () {
           [
             _c("h4", [_vm._v("Dia que desea reservar:")]),
             _vm._v(" "),
+            _vm.errores && _vm.errores.dia_reserva
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.dia_reserva[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "select",
               {
@@ -32182,6 +32217,16 @@ var render = function () {
             _vm._v(" "),
             _c("h4", [_vm._v("Hora que desea reservar:")]),
             _vm._v(" "),
+            _vm.errores && _vm.errores.hora_reserva
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.hora_reserva[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "select",
               {
@@ -32225,6 +32270,16 @@ var render = function () {
             _vm._v(" "),
             _c("h4", [_vm._v("Nombre(s) del Solicitante:")]),
             _vm._v(" "),
+            _vm.errores && _vm.errores.nombre_solicitante
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.nombre_solicitante[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -32253,6 +32308,16 @@ var render = function () {
             }),
             _vm._v(" "),
             _c("h4", [_vm._v("Apellido(s) del solicitante:")]),
+            _vm._v(" "),
+            _vm.errores && _vm.errores.apellido_solicitante
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.apellido_solicitante[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -32283,6 +32348,16 @@ var render = function () {
             _vm._v(" "),
             _c("h4", [_vm._v("Correo electronico:")]),
             _vm._v(" "),
+            _vm.errores && _vm.errores.email
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.email[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -32311,6 +32386,16 @@ var render = function () {
             }),
             _vm._v(" "),
             _c("h4", [_vm._v("Número Teléfonico:")]),
+            _vm._v(" "),
+            _vm.errores && _vm.errores.numero_telefono
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errores.numero_telefono[0]) +
+                      "\n            "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
