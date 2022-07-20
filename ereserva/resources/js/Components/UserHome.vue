@@ -3,9 +3,11 @@
         <div class="col-sm-auto col-8">
             <form @submit.prevent="validarFormulario()">
                 <h4>Dia que desea reservar:</h4>
+
                 <div class="alert alert-danger" v-if="errores && errores.dia_reserva">
                     {{ errores.dia_reserva[0] }}
                 </div>
+                
                 <select
                     name="dia"
                     class="form-select form-control mb-2"
@@ -105,6 +107,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import Swal from "sweetalert2";
 
@@ -127,11 +130,13 @@ export default {
             evento: this.id_evento,
 
             horasDisponibles: "",
+
+            disabledDates: {
+                to: new Date(Date.now() - 8640000)
+            },
         };
     },
-    created() {
-        console.log(this.evento);
-    },
+    
     methods: {
         reservar() {
             let data = new FormData();

@@ -13,7 +13,7 @@ class CitasController extends Controller
         $user_id = auth()->id();
         $citas = DB::table('Solicitudes')
         ->join('Eventos', 'Solicitudes.IdEvento', '=', 'Eventos.id')
-        ->select('solicitudes.id', 'eventos.NombreEvento', 'solicitudes.FechaSolicitada', 'solicitudes.HoraSolicitada', 'solicitudes.NombreSolicitante','solicitudes.Email','solicitudes.NumeroTelefono')
+        ->select('solicitudes.id', 'eventos.NombreEvento', 'solicitudes.FechaSolicitada', 'solicitudes.HoraSolicitada', 'solicitudes.NombreSolicitante', 'solicitudes.ApellidoSolicitante','solicitudes.Email','solicitudes.NumeroTelefono')
         ->where('Solicitudes.Status','=','Aceptada')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->get();

@@ -5477,6 +5477,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5494,11 +5497,11 @@ __webpack_require__.r(__webpack_exports__);
       email: "",
       numero_telefono: "",
       evento: this.id_evento,
-      horasDisponibles: ""
+      horasDisponibles: "",
+      disabledDates: {
+        to: new Date(Date.now() - 8640000)
+      }
     };
-  },
-  created: function created() {
-    console.log(this.evento);
   },
   methods: {
     reservar: function reservar() {

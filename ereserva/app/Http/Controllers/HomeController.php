@@ -15,7 +15,14 @@ class HomeController extends Controller
         $solicitudes = DB::table('Solicitudes')
         ->join('Eventos', 'Solicitudes.IdEvento','=','Eventos.id')
         ->join('users', 'Eventos.IdUsuario','=','users.id')
-        ->select('Solicitudes.id', 'eventos.NombreEvento', 'Solicitudes.FechaEnvio','Solicitudes.FechaSolicitada', 'Solicitudes.HoraSolicitada','Solicitudes.NombreSolicitante','Solicitudes.Email','Solicitudes.NumeroTelefono')
+        ->select('Solicitudes.id', 'eventos.NombreEvento', 
+                'Solicitudes.FechaEnvio',
+                'Solicitudes.FechaSolicitada', 
+                'Solicitudes.HoraSolicitada',
+                'Solicitudes.NombreSolicitante', 
+                'Solicitudes.ApellidoSolicitante',
+                'Solicitudes.Email',
+                'Solicitudes.NumeroTelefono')
         ->where('solicitudes.Status','=','Pendiente')
         ->where('users.id', '=', $user_id)
         ->get();
