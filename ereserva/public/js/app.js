@@ -5613,6 +5613,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
+window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 Vue.component('cliente-component', (__webpack_require__(/*! ./components/UserHome.vue */ "./resources/js/components/UserHome.vue")["default"]));
 var app = new Vue({
   el: '#app'

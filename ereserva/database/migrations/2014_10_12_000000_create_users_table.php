@@ -33,7 +33,7 @@ return new class extends Migration
 
         Schema::create('Horarios', function (Blueprint $table){
             $table->id()->unique();
-            $table->date('Dia');
+            $table->date('Dia')->format('d/m/Y');
             $table->time('Hora');
             $table->string('Status');
             $table->foreignId('IdEvento');

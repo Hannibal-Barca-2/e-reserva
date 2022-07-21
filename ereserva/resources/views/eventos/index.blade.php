@@ -6,7 +6,7 @@
 @section('content')
     {{-- <div class="row align-items-center">
         <div class="col-md-10" style="text-align-center"> --}}
-            <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
+            <table class="tablas table-striped mt-2 mb-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>

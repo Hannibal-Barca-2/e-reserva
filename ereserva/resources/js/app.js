@@ -8,6 +8,8 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+window.Swal = require('sweetalert2');
+
 Vue.component('cliente-component', require('./components/UserHome.vue').default);
 
 

@@ -28,7 +28,7 @@
                     <td scope="col">{{ $cita->HoraSolicitada }}</td>
                     <td scope="col">{{ $cita->NombreSolicitante }} {{$cita->ApellidoSolicitante}}</td>
                     <td scope="col">{{ $cita->Email }}</td>
-                    <td scope="col"><a href="https://wa.me/52{{ $cita->NumeroTelefono }}?text=Hola%20{{ $cita->NombreSolicitante }} {{$cita->ApellidoSolicitante}}%20tu%20solicitud%20para%20{{ $cita->NombreEvento }}%20ha%20sido%20aceptada%20te%20esperamos%20el%20proximo%20{{ $cita->FechaSolicitada }}%20a%20las%20{{ $cita->HoraSolicitada }}%20hrs.">{{ $cita->NumeroTelefono }}
+                    <td scope="col"><a href="https://wa.me/52{{ $cita->NumeroTelefono }}?text=Hola%20{{ $cita->NombreSolicitante }} {{$cita->ApellidoSolicitante}}%20tu%20solicitud%20para%20{{ $cita->NombreEvento }}%20ha%20sido%20aceptada%20te%20esperamos%20el%20proximo%20{{ $cita->FechaSolicitada }}%20a%20las%20{{ $cita->HoraSolicitada }}%20hrs." target="_blank">{{ $cita->NumeroTelefono }}
                     </a></td>
                     <td scope="col">
                         <form>
