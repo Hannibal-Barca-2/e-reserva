@@ -50,13 +50,18 @@ class CitasController extends Controller
     public function destroy($cita)
     {
         $user_id = auth()->id();
+        
+        $cita_completa = DB::table('Solicitudes')
+        ->where('Solicitudes.id','=', $cita)
+        ->get();
 
         DB::table('Horarios')
         ->join('Eventos','Horarios.IdEvento','=','Eventos.id')
         ->join('Solicitudes','Eventos.id','=','Solicitudes.IdEvento')
         ->where('Horarios.Status', '=', 'Ocupado')
-        ->where('Eventos.IdUsuario','=',$user_id)
-        ->where('Solicitudes.id','=',$cita)
+        ->where('Horarios.Dia', '=',$cita_completa[0]->FechaSolicitada)
+        ->where('Horarios.Hora', '=',$cita_completa[0]->HoraSolicitada)
+        ->where('Horarios.IdEvento', '=',$cita_completa[0]->IdEvento)
         ->update(['Horarios.Status'=>'Disponible']);
 
         DB::table('Solicitudes')

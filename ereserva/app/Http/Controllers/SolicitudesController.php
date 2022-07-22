@@ -91,13 +91,6 @@ class SolicitudesController extends Controller
     {
         $user_id = auth()->id();
         
-        DB::table('Horarios')
-        ->join('Eventos', 'Horarios.IdEvento','=','Eventos.id')
-        ->join('Solicitudes', 'Eventos.id', '=', 'Solicitudes.IdEvento')
-        ->where('Solicitudes.id','=', $solicitud)
-        ->whereColumn('Solicitudes.FechaSolicitada','Horarios.Dia')
-        ->whereColumn('Solicitudes.HoraSolicitada','Horarios.Hora')
-        ->update(['Horarios.Status'=>'Disponible']);
         
         DB::table('Solicitudes')
         ->join('Eventos','Solicitudes.IdEvento','=','Eventos.id')

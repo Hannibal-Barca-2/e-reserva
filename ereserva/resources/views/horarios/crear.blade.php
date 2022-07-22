@@ -19,7 +19,11 @@
                     <tr>
                         <td scope="col">{{ $horario->Dia }}</td>
                         <td scope="col">{{ $horario->Hora }}</td>
-                        <td scope="col">{{ $horario->Status }}</td>
+                        @if($horario->Status == 'Disponible'){
+                            <td scope="col" style="color:green">{{ $horario->Status }}</td>
+                        @else 
+                            <td scope="col" style="color:red">{{ $horario->Status }}</td>
+                        @endif
                         <td scope="col">
                             <a class="btn btn-danger" href="{{ route('horarios.eliminar', $horario->id) }}"><i
                                     class="fa-solid fa-ban"></i></a>

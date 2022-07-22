@@ -20,20 +20,13 @@ class EventosController extends Controller
         ->select('Eventos.id','Eventos.NombreEvento','Eventos.Descripcion')
         ->where('Eventos.IdUsuario','=',$user_id)
         ->get();
-        
-        
-        $cuenta=DB::table('Solicitudes')
-        ->select(DB::raw('count(solicitudes.id) as solicitudes_cuenta'))
-        ->where('solicitudes.idEvento','=', 13)
-        ->get();
 
         DB::table('Eventos')
         ->join('Horarios','Eventos.id','=','Horarios.IdEvento')
         ->where('Horarios.Dia', '<', $fechaactual)
         ->delete();
 
-        $cuenta2 = $cuenta[0]->solicitudes_cuenta;
-        return view('eventos.index', compact('eventos','cuenta2'));
+        return view('eventos.index', compact('eventos'));
     }
 
  /**
@@ -104,6 +97,10 @@ class EventosController extends Controller
         ->get();
 
         if($cuenta[0]->solicitudes_cuenta!=0){
+            
+            throw new \Throwable;
+
+        }else{
             DB::table('Horarios')
             ->where('Horarios.IdEvento','=',$evento)
             ->delete();
@@ -113,8 +110,6 @@ class EventosController extends Controller
             ->delete();
             
             return redirect()->route('eventos.index');
-        }else{
-            return redirect()->route('eventos.index')->with('alert', 'No se puede eliminar');
         }
 
     }
