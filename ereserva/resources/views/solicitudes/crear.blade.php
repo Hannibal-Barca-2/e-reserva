@@ -6,7 +6,8 @@
 
 @section('content')
     <cliente-component  :array_dias="{{ $array_dias }}"
-                        :id_evento="{{ $id_evento }}" ></cliente-component>
+                        :id_evento="{{ $id_evento }}" 
+                        ></cliente-component>
 @endsection
 
 @section('scripts')

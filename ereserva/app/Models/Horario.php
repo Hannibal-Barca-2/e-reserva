@@ -15,5 +15,6 @@ class Horario extends Model
         'Status',
         'IdEvento',
     ];
+    protected $dates = ['Dia'];
     public $timestamps = false;
 }

@@ -24,7 +24,7 @@
     transform: translate(-50%, -50%);
   }
   
-  @media (max-width: 400px){
+  @media (max-width: 600px){
     .auth_form{
       width: 90%;
     }
@@ -65,57 +65,77 @@
     color: black;
 }
 
-registrarse:hover{
+.registrarse:hover{
     color:#0a448f;
     text-decoration: underline;
 }
 
 .header{
+    /* position: absolute; */
     width: 100%;
-    height: 55px;
-    background-color: #0a448f;
-    overflow: hidden;
-    align-items: center;
+    height: 75px;
+    background: #0b3e80;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px;
+    rgba(0,0,0,0.4);
 }
 
-.header img {
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auito;
+}
+
+.logo{
+    float: left;
+    line-height: 75px;
+}
+
+.logo img{
     position: absolute;
     margin-top: 0px;
     margin-left: 0px;
 }
 
-.header a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
+.menu{
+    float: right;
+    line-height: 75px;
+}
+
+.menu a {
+    color: #fff;
     text-decoration: none;
-    font-size: 17px;
+    display: inline-block;
+    padding: 10px 15px;
+    line-height: normal;
+    font-size: 14px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
 }
 
-.header a:hover { 
-    background-color: #0b3e80;
-    color: black;
+.menu a:hover{
+    color: #fff;
+    border-bottom: 4px solid #fff;
 }
 
-
-.header ul {
-    padding: 0;
-    margin: 0 0 0 150px;
-    list-style: none;
+#btn-menu{
+    display: none;
 }
 
-.header li {
-    float:left;
+.boton{
+    float: right;
+    display: none;
 }
 
-.footer{
-    background-color: #0b3e80;
-    width: 100%;
-    height: 100px;
-    bottom: 0;
-    /* position: fixed; */
-    color: white;
+.boton label{
+    color: #fff;
+    background: #0b3e80;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .bienvenida{
@@ -135,12 +155,21 @@ registrarse:hover{
 .tablas {
   table-layout: fixed;
   width: 100%;
+  border: 1px solid black;
   border-collapse: collapse;
   margin: 0px auto;
   padding: 8px;
   text-align: center;
-  
+  table-layout: fixed;
 }
+
+
+
+/* .container{
+    width: 100px;
+    max-width: 1000px;
+    margin:auto;
+} */
 
 .tablas th {
     background-color: #0b3e80;
@@ -153,4 +182,161 @@ registrarse:hover{
 
 .tablas tr:hover{
     background-color: gainsboro;
+}
+
+
+.pie-pagina{
+    width: 100%;
+    background-color: #0b3e80;
+    box-shadow: 0px 1px 10px;
+}
+
+.pie-pagina .group-1{
+    width: 100%;
+    max-width: 1200px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:50px;
+    padding:45px 0px;
+}
+
+.pie-pagina .group-1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-pagina .group-1 .box figure img{
+    width: 250px;
+}
+
+.pie-pagina .group-1 .box h2{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.pie-pagina .group-1 .box a{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+
+.pie-pagina .group-1 .box p{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+.pie-pagina .group-1 .red-social a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: #0b3e80;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.pie-pagina .group-2{
+    background-color: #06264f;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.pie-pagina .group-2 small{
+    font-size: 15px;
+}
+
+@media screen and (max-width:600px){
+    .pie-pagina .group-1{
+        width: 100%;
+        max-width: 1200px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap:30px;
+        padding:35px 0px;
+    }
+
+    .header{
+        height:60px;
+    }
+
+    .logo, .boton{
+        line-height: 50px;
+        display: block;
+    }
+
+    .logo img{
+        height: 60px;
+        width: 70px;
+    }
+    .menu{
+        position: absolute;
+        background: #0b3e80;
+        width: 100%;
+        height: 100vh;
+        top: 60px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+    #btn-menu:checked ~ .menu{
+        transform: translateX(0%);
+    }
+
+    .menu a{
+        display: block;
+        margin-top: 10px;
+    }
+
+    .tablas{
+        border: 0px;
+    }
+
+    .tablas thead {
+        display: none;
+    }
+
+    .tablas tr {
+        margin-bottom: 8px;
+        border-bottom: 4px solid #ddd;
+        display: block;
+    }
+
+    .tablas th, .tablas td {
+        font-size: 12px;
+    }
+
+    .tablas td {
+        display: block;
+        border-bottom: 1px sold #ddd;
+        text-align: right;
+    }
+
+    .table td:last-child {
+        border-bottom: 0px;
+    }
+
+    table td::before{
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        float: left;
+    }
+
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 55px;
+    background-color: #0a448f;
+    overflow: hidden;
+    
 }

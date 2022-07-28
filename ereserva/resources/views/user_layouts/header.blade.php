@@ -1,6 +1,6 @@
-<nav class="header navbar-expand-lg">
-    <div class="position-absolute top-0 start-50 translate-middle">
+<nav class="parent navbar-expand-lg">
+    
         <img src="{{ asset('img/logo max4.jpg') }}" alt="MAX4 Technologies Logo" width="100"
         height="55"loading="lazy">
-    </div>
+    
 </nav>

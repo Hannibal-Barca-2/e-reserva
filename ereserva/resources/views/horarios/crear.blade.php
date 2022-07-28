@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center">
+    <div class="container">
         <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
             <thead>
                 <tr>

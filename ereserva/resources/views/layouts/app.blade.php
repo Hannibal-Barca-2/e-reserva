@@ -17,6 +17,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
@@ -31,15 +33,12 @@
             @include('layouts.header')
         </nav>
         <main class="system_body">
+            @include('sweetalert::alert')
             <section class="section">
                 <div>
                     <h3>@yield('title')</h3>
-                </div>
-                <div class="col-lg-12 px-0 px-md-auto">
-                    <div class="card">
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
+                    <div class="col-lg-12 px-0 px-md-auto¿">
+                        @yield('content')
                     </div>
                 </div>
             </section>
@@ -49,6 +48,7 @@
         </footer>
     </div>
     @yield('js')
+
 </body>
 
 </html>

@@ -7,6 +7,7 @@
 @section('content')
     {{-- <div class="row align-items-center"> --}}
     {{-- <div class="col-md-10 justify-content-center" style="text-align-center"> --}}
+    <div class="container">
     <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
         <thead>
             <th scope="col">Evento</th>
@@ -41,6 +42,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     {{-- </div> --}}
     {{-- </div> --}}
 @endsection

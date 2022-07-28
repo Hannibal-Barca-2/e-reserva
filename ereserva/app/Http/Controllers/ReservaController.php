@@ -24,7 +24,7 @@ class ReservaController extends Controller
             'dia_reserva' => 'required',
             'hora_reserva' => 'required',
             'nombre_solicitante' => 'required|string|min:4|regex:/^[\pL\s\-]+$/u',
-            'apellido_solicitante' => 'required|string|min:4|regex:/^[\pL\s\-]+$/u',
+            'apellido_solicitante' => 'required|string|min:3|regex:/^[\pL\s\-]+$/u',
             'numero_telefono' => 'required|numeric|digits:10',
             'email' => 'required|email',
         ]);

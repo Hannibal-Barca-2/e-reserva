@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Evento;
 use App\Models\Horario;
 use App\Models\Solicitud;
+use Alert;
 
 class EventosController extends Controller
 {
@@ -98,7 +99,8 @@ class EventosController extends Controller
 
         if($cuenta[0]->solicitudes_cuenta!=0){
             
-            throw new \Throwable;
+            Alert::error('Error', 'No se puede eliminar este evento, todavia hay solicitudes para este evento');
+            return redirect()->route('eventos.index');
 
         }else{
             DB::table('Horarios')
@@ -109,6 +111,7 @@ class EventosController extends Controller
             ->where('Eventos.id','=',$evento)
             ->delete();
             
+            Alert::success('Se ha eliminado un evento');
             return redirect()->route('eventos.index');
         }
 

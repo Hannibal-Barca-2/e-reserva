@@ -34,6 +34,7 @@ Route::get('/login', [SesionController::class, 'create'])->name('login')
 Route::post('/login', [SesionController::class, 'store'])->name('login.store');
 Route::get('/logout', [SesionController::class, 'destroy'])->name('logout')
     ->middleware('auth');
+    
 Route::get('solicitudes/aceptar/{id}', [SolicitudesController::class, 'update'])->name('solicitudes.aceptar');
 Route::get('solicitudes/rechazar/{id}', [SolicitudesController::class, 'destroy'])->name('solicitudes.rechazar');
 
