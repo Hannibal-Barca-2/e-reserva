@@ -26,6 +26,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "sweetalert2": "^11.4.22"
+        "sweetalert2": "^11.4.22",
+        "v-calendar": "^2.4.1",
+        "vue-functional-calendar": "^2.9.96"
     }
 }

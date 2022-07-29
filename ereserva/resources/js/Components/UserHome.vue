@@ -8,20 +8,14 @@
                     {{ errores.dia_reserva[0] }}
                 </div>
                 
-                <select
-                    name="dia"
-                    class="form-select form-control mb-2"
-                    v-model="dia_reserva"
-                    @change="consultarHoras"
-                >
-                    <option
-                        v-for="(dia, id) in array_dias"
-                        :value="dia"
-                        :key="id"
-                    >
-                        {{ dia }}
-                    </option>
-                </select>
+                <v-date-picker 
+                :value="null"
+                :attributes='attributes'
+                :masks="masks"
+                mode="date"
+                v-model="dia_reserva"
+                @dayclick="consultarHoras"
+                is-inline/>
 
                 <h4>Hora que desea reservar:</h4>
                 <div class="alert alert-danger" v-if="errores && errores.hora_reserva">
@@ -110,12 +104,34 @@
 
 <script>
 import Swal from "sweetalert2";
+import { FunctionalCalendar } from 'vue-functional-calendar';
+import VCalendar from 'v-calendar';
+import { Calendar, DatePicker } from 'v-calendar';
+
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
+    screens: {
+    tablet: '576px',
+    laptop: '992px',
+    desktop: '1200px',
+    },   
+    // ...other defaults
+});
 
 export default {
     props: {
         array_dias: "",
         array_horas: "",
         id_evento: "",
+    },
+    
+    components: {
+        Calendar,
+        DatePicker,
+    },
+
+    mounted(){
+        console.log(this.array_dias[1]);
     },
 
     data() {
@@ -129,11 +145,24 @@ export default {
             numero_telefono: "",
             evento: this.id_evento,
 
+            arr_dias: this.array_dias,
             horasDisponibles: "",
 
             disabledDates: {
                 to: new Date(Date.now() - 8640000)
             },
+
+            masks:{
+                input: 'YYYY-MM-DD',
+            },
+
+            attributes: [
+                {
+                dates: '2022-08-15',
+                dots: true,
+                }
+            ],
+
         };
     },
     
@@ -230,6 +259,7 @@ export default {
                 .post("/traer_horas", data)
                 .then((res) => {
                     this.horasDisponibles = res.data;
+                    console.log(res);
                 })
                 .catch(function (error) {
                     console.log(error.response.data);

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<div class="container">
     <table class="tablas table-striped mt-2 text-center align-items-center" style="overflow-x:auto; margin: 0 auto;">
         <thead>
             <tr>
@@ -25,4 +26,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
