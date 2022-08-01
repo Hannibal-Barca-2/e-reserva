@@ -2,20 +2,23 @@
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-auto col-8">
             <form @submit.prevent="validarFormulario()">
-                <h4>Dia que desea reservar:</h4>
 
-                <div class="alert alert-danger" v-if="errores && errores.dia_reserva">
-                    {{ errores.dia_reserva[0] }}
-                </div>
-                
-                <v-date-picker 
-                :value="null"
-                :attributes='attributes'
-                :masks="masks"
-                mode="date"
-                v-model="dia_reserva"
-                @dayclick="consultarHoras"
-                is-inline/>
+                <h4>Dia que desea reservar:</h4>
+                <h9>El formato utilizado es año-mes-dia</h9>
+               <select
+                    name="dia"
+                    class="form-select form-control mb-2"
+                    v-model="dia_reserva"
+                    @change="consultarHoras"
+                >
+                    <option
+                        v-for="(dia, id) in array_dias"
+                        :value="dia"
+                        :key="id"
+                    >
+                        {{ dia }}
+                    </option>
+                </select>
 
                 <h4>Hora que desea reservar:</h4>
                 <div class="alert alert-danger" v-if="errores && errores.hora_reserva">
@@ -103,11 +106,14 @@
 </template>
 
 <script>
+
 import Swal from "sweetalert2";
 import { FunctionalCalendar } from 'vue-functional-calendar';
 import VCalendar from 'v-calendar';
 import { Calendar, DatePicker } from 'v-calendar';
 
+
+//import Datepicker from 'vuejs-datepicker';
 Vue.use(VCalendar, {
   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
     screens: {
@@ -125,10 +131,10 @@ export default {
         id_evento: "",
     },
     
-    components: {
-        Calendar,
-        DatePicker,
-    },
+     components: {
+         Calendar,
+         DatePicker,
+     },
 
     mounted(){
         console.log(this.array_dias[1]);
@@ -145,23 +151,26 @@ export default {
             numero_telefono: "",
             evento: this.id_evento,
 
+            hoy: new Date(),
+
             arr_dias: this.array_dias,
             horasDisponibles: "",
 
-            disabledDates: {
-                to: new Date(Date.now() - 8640000)
-            },
+            // disabledDates: {
+            //     to: new Date(Date.now() - 8640000)
+            // },
 
-            masks:{
-                input: 'YYYY-MM-DD',
-            },
+             masks:{
+                 input: 'YYYY-MM-DD',
+                 data: 'YYYY-MM-DD',
+             },
 
-            attributes: [
-                {
-                dates: '2022-08-15',
-                dots: true,
-                }
-            ],
+         attributes: [
+             {
+             dates: '2022-08-15',
+             dots: true,
+             }
+         ],
 
         };
     },

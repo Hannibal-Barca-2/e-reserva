@@ -14,7 +14,7 @@
 }
 
 .auth_form {
-    border: 1px solid #E1E1E1;
+    border: 1px solid #0b3e80;
     border-radius: 5px;
     padding: 17px;
     width: 300px;
@@ -27,6 +27,14 @@
   @media (max-width: 600px){
     .auth_form{
       width: 90%;
+    }
+
+    .auth_form label{
+        width: 50%;
+    }
+
+    .auth_form input{
+        width: 100%;
     }
   }
 
@@ -252,7 +260,7 @@
     font-size: 15px;
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width:800px){
     .pie-pagina .group-1{
         width: 100%;
         max-width: 1200px;

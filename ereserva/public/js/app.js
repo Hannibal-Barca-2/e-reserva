@@ -5477,9 +5477,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
+ //import Datepicker from 'vuejs-datepicker';
 
 Vue.use((v_calendar__WEBPACK_IMPORTED_MODULE_2___default()), {
   componentPrefix: 'vc',
@@ -5514,13 +5518,15 @@ Vue.use((v_calendar__WEBPACK_IMPORTED_MODULE_2___default()), {
       email: "",
       numero_telefono: "",
       evento: this.id_evento,
+      hoy: new Date(),
       arr_dias: this.array_dias,
       horasDisponibles: "",
-      disabledDates: {
-        to: new Date(Date.now() - 8640000)
-      },
+      // disabledDates: {
+      //     to: new Date(Date.now() - 8640000)
+      // },
       masks: {
-        input: 'YYYY-MM-DD'
+        input: 'YYYY-MM-DD',
+        data: 'YYYY-MM-DD'
       },
       attributes: [{
         dates: '2022-08-15',
@@ -38323,33 +38329,51 @@ var render = function () {
           [
             _c("h4", [_vm._v("Dia que desea reservar:")]),
             _vm._v(" "),
-            _vm.errores && _vm.errores.dia_reserva
-              ? _c("div", { staticClass: "alert alert-danger" }, [
+            _c("h9", [_vm._v("El formato utilizado es año-mes-dia")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dia_reserva,
+                    expression: "dia_reserva",
+                  },
+                ],
+                staticClass: "form-select form-control mb-2",
+                attrs: { name: "dia" },
+                on: {
+                  change: [
+                    function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.dia_reserva = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.consultarHoras,
+                  ],
+                },
+              },
+              _vm._l(_vm.array_dias, function (dia, id) {
+                return _c("option", { key: id, domProps: { value: dia } }, [
                   _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.errores.dia_reserva[0]) +
-                      "\n            "
+                    "\n                    " +
+                      _vm._s(dia) +
+                      "\n                "
                   ),
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("v-date-picker", {
-              attrs: {
-                value: null,
-                attributes: _vm.attributes,
-                masks: _vm.masks,
-                mode: "date",
-                "is-inline": "",
-              },
-              on: { dayclick: _vm.consultarHoras },
-              model: {
-                value: _vm.dia_reserva,
-                callback: function ($$v) {
-                  _vm.dia_reserva = $$v
-                },
-                expression: "dia_reserva",
-              },
-            }),
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("h4", [_vm._v("Hora que desea reservar:")]),
             _vm._v(" "),

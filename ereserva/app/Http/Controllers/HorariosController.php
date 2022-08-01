@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Horario;
+use Alert;
 
 class HorariosController extends Controller
 {
@@ -40,6 +41,8 @@ class HorariosController extends Controller
         $horario->IdEvento = $idEvento;
         $horario->save();
     
+        Alert::success('Se ha guardado el horario correctamente');
+
         return redirect()->route('eventos.index');
         
     }
@@ -80,6 +83,8 @@ class HorariosController extends Controller
         $horarioUpdate->Hora =$request->Hora;
         $horarioUpdate->save();
 
+        Alert::success('Se ha modificado el horario correctamente');
+
         return redirect()->route('eventos.index');
     }
 
@@ -88,7 +93,7 @@ class HorariosController extends Controller
         DB::table('Horarios')
         ->where('Horarios.id', '=', $id)
         ->delete();
-
+        Alert::success('Se ha eliminado el horario correctamente');
         return redirect()->route('eventos.index');
     }
 }

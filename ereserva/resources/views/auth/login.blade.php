@@ -23,14 +23,14 @@
 
             @error('message')
                 <p class="border border-red-500 rounded-md bg-red-100 w-full
-        text-red-600 p-2 my-2">* Error</p>
+                text-red-600 p-2 my-2">{{$message}}</p>
             @enderror
 
             <button type="submit"
                 class="button_login">Iniciar
                 sesión</button>
-            <a href="{{ route('registro') }}"
-                class="registrarse my-2">Registrarse</a>
+            {{-- <a href="{{ route('registro') }}"
+                class="registrarse my-2">Registrarse</a> --}}
         </form>
     </div>
 @endsection

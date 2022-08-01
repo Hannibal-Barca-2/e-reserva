@@ -1,11 +1,10 @@
 @extends('user_layouts.app')
 
 @section('title')
-    Solicitud para {{ $nombreEvento[0]->NombreEvento }}
+    Solicitud para "{{ $nombreEvento[0]->NombreEvento }}"
 @endsection
 
 @section('content')
-    {{$array_dias}}
     <cliente-component  :array_dias="{{ $array_dias }}"
                         :id_evento="{{ $id_evento }}" 
                         ></cliente-component>

@@ -53,6 +53,6 @@
         </div>
     </div>
     <div class="group-2">
-        <small>&copy; 2021 <b>Slee Dw</b> - Todos los derechos Reservados.</small>
+        <small>&copy; {{date('Y')}} <b>Max4 Technologies</b> - Todos los derechos Reservados.</small>
     </div>
 </footer>

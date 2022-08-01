@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Agregar Horario
+
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
                     Hora de inicio:
                     <input name="Hora" type="time" class="form-control mb-2" />
                 </p>
-                <button class="button button1" type="submit">Agregar</button>
+                <button class="button button1 mb-1" type="submit">Agregar</button>
             </form>
         </div>
     </div>
